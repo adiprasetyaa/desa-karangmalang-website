@@ -3,14 +3,14 @@
 
 <head>
 
-@include('layouts.css')
+@include('layouts.guest.css')
 
 </head>
 
 <body>
     <!-- Preloader -->
 
-    @include('layouts.header')
+    @include('layouts.guest.header')
 
     <!-- ##### Header Area Start ##### -->
 
@@ -860,11 +860,11 @@
         </div>
 
         <!-- Footer Bottom Area -->
-         @include('layouts.footer')
+         @include('layouts.guest.footer')
 
     <!-- ##### Footer Area End ##### -->
 
-    @include('layouts.js')
+    @include('layouts.guest.js')
 </body>
 
 </html>
