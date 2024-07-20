@@ -8,7 +8,7 @@
 <title>Alazea - Gardening &amp; Landscaping HTML Template</title>
 
 <!-- Favicon -->
-<link rel="icon" href="{{asset('img/core-img/favicon.ico')}}">
+<link rel="icon" href="{{asset('assets/guest/img/core-img/favicon.ico')}}">
 
 <!-- Core Stylesheet -->
-<link rel="stylesheet" href="{{asset('css/style.css')}}">
+<link rel="stylesheet" href="{{asset('assets/guest/css/style.css')}}">
