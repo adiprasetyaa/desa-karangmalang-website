@@ -22,5 +22,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(SuperAdminSeeder::class); // superadmin
+        $this->call(AdminSeeder::class); // administrator
+        
     }
 }
