@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @include('layouts.admin.css')
+
 </head>
 
 <body>
