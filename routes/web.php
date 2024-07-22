@@ -6,6 +6,10 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KadesController;
+use App\Http\Controllers\KadesPeriodeController;
+use App\Http\Controllers\PeopleController;
+use App\Http\Controllers\PeriodeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -40,6 +44,12 @@ Route::group(
         Route::post('/admin', [LoginController::class, 'destroy']);    
         
         Route::get('/dashboard', [DashboardController::class, 'create'])->name('dashboard');
+
+        Route::resource('people', PeopleController::class);
+        Route::resource('kades', KadesController::class);
+        Route::resource('periode', PeriodeController::class);
+        Route::resource('kades_periode', KadesPeriodeController::class);
+
     }
 );
 
