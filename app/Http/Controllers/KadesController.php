@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kades;
+use App\Models\Periode;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class KadesController extends Controller
@@ -12,7 +14,14 @@ class KadesController extends Controller
      */
     public function index()
     {
-        //
+        $periodes = Periode::all()->map(function ($periode) {
+            $periode->start_at = Carbon::parse($periode->start_at)->format('Y');
+            $periode->end_at = Carbon::parse($periode->end_at)->format('Y');
+            return $periode;
+        });
+        return view('admin.kades.index', [
+            'periodes' => $periodes
+        ]);
     }
 
     /**
