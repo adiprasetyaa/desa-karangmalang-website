@@ -3,7 +3,7 @@
         <div class="sidebar-header position-relative">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
-                    <a href="">
+                    <a href="/">
                         <img src="{{ asset('assets/admin') }}/static/images/logo/logo.png" alt="Logo" srcset=""
                             style="width: 100px;height: auto;">
                     </a>
@@ -18,12 +18,26 @@
                 <li class="sidebar-title">Menu</li>
 
                 <li class="sidebar-item active ">
-                    <a href="index.html" class='sidebar-link'>
+                    <a href="{{route('admin.dashboard')}}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
                     </a>
 
 
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="{{ route('admin.people.index') }}" class='sidebar-link'>
+                        <i class="bi bi-stack"></i>
+                        <span>Individu</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="{{ route('admin.kades.index') }}" class='sidebar-link'>
+                        <i class="bi bi-stack"></i>
+                        <span>Kepala Desa</span>
+                    </a>
                 </li>
 
                 <li class="sidebar-item  has-sub">
