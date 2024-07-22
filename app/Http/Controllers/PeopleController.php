@@ -12,7 +12,9 @@ class PeopleController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.people.index', [
+            'peoples' => People::all()
+        ]);
     }
 
     /**
