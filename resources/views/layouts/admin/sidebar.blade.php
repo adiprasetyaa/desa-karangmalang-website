@@ -40,10 +40,10 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item {{ request()->routeIs('admin.kades.index') ? 'active' : '' }}">
-                    <a href="{{ route('admin.kades.index') }}" class='sidebar-link'>
+                <li class="sidebar-item {{ request()->routeIs('admin.ketua_rt.index') ? 'active' : '' }}">
+                    <a href="{{ route('admin.ketua_rt.index') }}" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
-                        <span>Kepala Desa</span>
+                        <span>Ketua RT</span>
                     </a>
                 </li>
 

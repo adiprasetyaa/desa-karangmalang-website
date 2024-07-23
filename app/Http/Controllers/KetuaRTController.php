@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\KetuaRT;
 use App\Models\Log;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class KetuaRTController extends Controller
 {
@@ -14,7 +15,13 @@ class KetuaRTController extends Controller
     public function index()
     {
         $ketuart = KetuaRT::all();
-        return view('ketuart.index', compact('ketuart'));
+        
+        // add tempat, tanggal lahir indonesia to ketuart
+        foreach($ketuart as $k){
+            $date = Carbon::createFromFormat('Y-m-d', $k->tanggal_lahir)->locale('id');
+            $k->ttl = $k->tempat_lahir.', '.$date->translatedFormat('d F Y');
+        }
+        return view('admin.ketua_rt.index', compact('ketuart'));
     }
 
     /**
