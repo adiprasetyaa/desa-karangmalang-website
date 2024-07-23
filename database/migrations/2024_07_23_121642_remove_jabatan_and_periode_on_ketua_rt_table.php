@@ -26,8 +26,8 @@ return new class extends Migration
     {
         Schema::table('ketua_rt', function (Blueprint $table) {
             $table->string('Jabatan');
-            $table->date('PeriodeStart');
-            $table->date('PeriodeEnd');
+            $table->date('PeriodeStart')->nullable();;
+            $table->date('PeriodeEnd')->nullable();;
         });
     }
 };
