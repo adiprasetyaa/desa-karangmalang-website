@@ -9,7 +9,7 @@ use App\Models\Periode;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class KadesAsOf2024 extends Seeder
+class KadesAsOf2024Seeder extends Seeder
 {
     /**
      * Run the database seeds.
