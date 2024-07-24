@@ -17,7 +17,7 @@
                     <nav class="classy-navbar justify-content-between" id="alazeaNav">
 
                         <!-- Nav Brand -->
-                        <a href="index.html" class="nav-brand"><img src="{{asset('assets/guest')}}/img/core-img/logo.png" alt=""></a>
+                        <a href="index.html" class="nav-brand"><img src="{{ asset('assets/guest') }}/static/images/logo/logo_fullwhite.png" alt="logo" style="width: 110px;"></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
