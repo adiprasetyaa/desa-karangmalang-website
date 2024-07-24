@@ -100,7 +100,7 @@ class KetuaRTController extends Controller
             'tempat_lahir' => 'required|string',
             'tanggal_lahir' => 'required|date',
             'Alamat' => 'required|string',
-            'rt' => 'required|string',
+            'rt' => 'string',
             'NoHandphone' => 'required|string',
             // 'PeriodeStart' => 'required|date',
             // 'PeriodeEnd' => 'required|date',

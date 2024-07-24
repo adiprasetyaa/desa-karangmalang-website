@@ -3,6 +3,7 @@
 @section('css')
 <link rel="stylesheet" href="{{ asset('assets/admin')}}/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
 <link rel="stylesheet" crossorigin href="{{ asset('assets/admin')}}/compiled/css/table-datatable-jquery.css">
+<link rel="stylesheet" href="{{ asset('assets/admin')}}/extensions/flatpickr/flatpickr.min.css">
 @endsection
 
 @section('heading')
@@ -51,16 +52,22 @@
                                 <th>TTL</th>
                                 <th>Alamat</th>
                                 <th>No HP</th>
+                                <th>Opsi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($ketuart as $ketua)
-                                <tr>
+                                <tr data-bs-idketua="{{ $ketua->id }}">
                                     <td>{{ $ketua->rt }}</td>
                                     <td>{{ $ketua->Nama }}</td>
                                     <td>{{ $ketua->ttl }}</td>
                                     <td>{{ $ketua->Alamat }}</td>
                                     <td>{{ $ketua->NoHandphone }}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-idketua="{{ $ketua->id }}" data-bs-target="#editForm">
+                                            Edit
+                                        </button>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -71,6 +78,10 @@
 
     </section>
     <!-- Basic Tables end -->
+@include('admin.ketua_rt.modal.update')
+{{-- @include('admin.ketua_rt.modal.delete') --}}
+
+
 @endsection
 
 @section('javascript')
@@ -78,4 +89,20 @@
 <script src="{{ asset('assets/admin')}}/extensions/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="{{ asset('assets/admin')}}/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
 <script src="{{ asset('assets/admin')}}/static/js/pages/datatables.js"></script>
+<script src="{{ asset('assets/admin')}}/extensions/flatpickr/flatpickr.min.js"></script>
+<script src="{{ asset('assets/admin')}}/static/js/pages/date-picker.js"></script>
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    flatpickr("#tanggal_lahir", {
+        dateFormat: "Y-m-d",
+        defaultDate: new Date(),
+        allowInput: true,
+        onChange: function(selectedDates, dateStr, instance) {
+            console.log(selectedDates, dateStr, instance);
+        }
+    });
+});
+</script>
+
 @endsection
