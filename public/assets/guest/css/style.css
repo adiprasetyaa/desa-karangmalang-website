@@ -8,6 +8,7 @@ Version: - v1.0
 */
 /* :: 1.0 Import Fonts */
 @import url("https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 /* :: 2.0 Import All CSS */
 @import url(bootstrap.min.css);
 @import url(classy-nav.css);
@@ -22,7 +23,7 @@ Version: - v1.0
   padding: 0; }
 
 body {
-  font-family: "Dosis", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
   color: #707070; }
 
@@ -285,8 +286,8 @@ img {
   min-width: 150px;
   height: 46px;
   color: #ffffff;
-  background-color: #70c745;
-  border: 2px solid #70c745;
+  background-color: #0096dc;
+  border: 2px solid #0096dc;
   border-radius: 2px;
   padding: 0 20px;
   font-size: 16px;
@@ -295,7 +296,7 @@ img {
   font-weight: 600; }
   .alazea-btn.active, .alazea-btn:hover, .alazea-btn:focus {
     font-size: 16px;
-    color: #70c745;
+    color: #0096dc;
     font-weight: 600;
     background-color: transparent;
     box-shadow: none; }
