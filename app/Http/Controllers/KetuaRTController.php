@@ -69,8 +69,9 @@ class KetuaRTController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(KetuaRT $ketuaRT)
+    public function show($id)
     {
+        $ketuaRT = KetuaRT::find($id);
         return response()->json([
             'success' => true,
             'status_code' => 200,
@@ -89,8 +90,10 @@ class KetuaRTController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, KetuaRT $ketuaRT)
+    public function update(Request $request, $id)
     {
+        $ketuaRT = KetuaRT::find($id);
+
         $attributes = $request->validate([
             'Nama' => 'required|string',
             // 'TTL' => 'required|date',
@@ -124,8 +127,9 @@ class KetuaRTController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, KetuaRT $ketuaRT)
+    public function destroy(Request $request, $id)
     {
+        $ketuaRT = KetuaRT::find($id);
         $old_data = $ketuaRT;
         $ketuaRT->delete();
 
