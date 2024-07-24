@@ -67,6 +67,10 @@
                                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-idketua="{{ $ketua->id }}" data-bs-target="#editForm">
                                             Edit
                                         </button>
+                                        <button type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal" data-bs-idketua="{{ $ketua->id }}">
+                                            Hapus
+                                        </button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -79,7 +83,7 @@
     </section>
     <!-- Basic Tables end -->
 @include('admin.ketua_rt.modal.update')
-{{-- @include('admin.ketua_rt.modal.delete') --}}
+@include('admin.ketua_rt.modal.delete')
 
 
 @endsection
