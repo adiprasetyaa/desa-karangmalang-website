@@ -15,7 +15,7 @@ class LKDController extends Controller
     {
         //
         $lkd = LKD::all();
-        return view('lkd.index', compact('lkd'));
+        return view('admin.pemerintahan.lembaga_desa.lkd.index', compact('lkd'));
     }
 
     /**
@@ -56,13 +56,13 @@ class LKDController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(LKD $lKD)
+    public function show($id)
     {
+        $lkd = LKD::find($id);
         return response()->json([
             'success' => true,
             'status_code' => 200,
-            'message' => 'Data LKD berhasil ditampilkan',
-            'data' => $lKD
+            'data' => $lkd
         ]);
     }
 
@@ -77,15 +77,18 @@ class LKDController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, LKD $lKD)
+    public function update(Request $request, $id)
     {
+
+        $lkd = LKD::find($id);
+
         $attributes = $request->validate([
-            'nama' => 'required|string',
-            'jabatan' => 'required|string',
+            'Nama' => 'required|string',
+            'Jabatan' => 'required|string',
         ]); 
 
-        $old_data = $lKD;
-        $lKD->update($attributes);
+        $old_data = $lkd;
+        $lkd->update($attributes);
 
         Log::create([
             'ip_address' => $request->ip(),
@@ -105,10 +108,11 @@ class LKDController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, LKD $lKD)
+    public function destroy(Request $request, $id)
     {
-        $old_data = $lKD;
-        $lKD->delete();
+        $lkd = LKD::find($id);
+        $old_data = $lkd;
+        $lkd->delete();
 
         Log::create([
             'ip_address' => $request->ip(),

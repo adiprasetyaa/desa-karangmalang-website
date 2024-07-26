@@ -31,9 +31,9 @@ class LPMDController extends Controller
     public function store(Request $request)
     {
         $attributes = $request->validate([
-            'nama' => 'required|string',
-            'jabatan' => 'required|string',
-            'alamat' => 'required|string',
+            'Nama' => 'required|string',
+            'Jabatan' => 'required|string',
+            'Alamat' => 'required|string',
         ]); 
 
         LPMD::create($attributes);

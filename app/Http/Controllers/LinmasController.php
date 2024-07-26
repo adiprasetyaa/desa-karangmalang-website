@@ -14,7 +14,7 @@ class LinmasController extends Controller
     public function index()
     {
         $linmas = Linmas::all();
-        return view('linmas.index', compact('linmas'));
+        return view('admin.pemerintahan.lembaga_desa.linmas.index', compact('linmas'));
     }
 
     /**
@@ -31,9 +31,9 @@ class LinmasController extends Controller
     public function store(Request $request)
     {
         $attributes = $request->validate([
-            'nama' => 'required|string',
-            'jabatan' => 'required|string',
-            'alamat' => 'required|string',
+            'Nama' => 'required|string',
+            'Jabatan' => 'required|string',
+            'Alamat' => 'required|string',
         ]); 
 
         Linmas::create($attributes);
@@ -56,8 +56,9 @@ class LinmasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Linmas $linmas)
+    public function show($id)
     {
+        $linmas = Linmas::find($id);
         return response()->json([
             'success' => true,
             'status_code' => 200,
@@ -76,12 +77,14 @@ class LinmasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Linmas $linmas)
+    public function update(Request $request, $id)
     {
+            $linmas = Linmas::find($id);
+
             $attributes = $request->validate([
-                'nama' => 'required|string',
-                'jabatan' => 'required|string',
-                'alamat' => 'required|string',
+                'Nama' => 'required|string',
+                'Jabatan' => 'required|string',
+                'Alamat' => 'required|string',
             ]); 
             
             $old_data = $linmas;
@@ -105,8 +108,9 @@ class LinmasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, Linmas $linmas)
+    public function destroy(Request $request, $id)
     {
+        $linmas = Linmas::find($id);
         $old_data = $linmas;
         $linmas->delete();
         
