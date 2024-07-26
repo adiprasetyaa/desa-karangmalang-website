@@ -14,7 +14,9 @@ class BPDController extends Controller
     public function index()
     {
         $bpd = BPD::all();
-        return view('bpd.index', compact('bpd'));
+        return view('admin.pemerintahan.lembaga_desa.bpd.index', compact('bpd'));
+
+        // return view('admin.ketua_rt.index', compact('ketuart'));
     }
 
     /**
@@ -56,12 +58,13 @@ class BPDController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(BPD $bPD)
+    public function show($id)
     {
+        $bpd = BPD::find($id);
         return response()->json([
             'success' => true,
             'status_code' => 200,
-            'data' => $bPD
+            'data' => $bpd
         ]);
     }
 
@@ -76,17 +79,19 @@ class BPDController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BPD $bPD)
+    public function update(Request $request, $id)
     {
+
+        $bpd = BPD::find($id);
         
         $attributes = $request->validate([
-            'nama' => 'required|string',
-            'jabatan' => 'required|string',
-            'alamat' => 'required|string',
+            'Nama' => 'required|string',
+            'Jabatan' => 'required|string',
+            'Alamat' => 'required|string',
         ]); 
         
-        $old_data = $bPD;
-        $bPD->update($attributes);
+        $old_data = $bpd;
+        $bpd->update($attributes);
         
         Log::create([
             'ip_address' => $request->ip(),
@@ -106,10 +111,11 @@ class BPDController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, BPD $bPD)
+    public function destroy(Request $request, $id)
     {
-        $old_data = $bPD;
-        $bPD->delete();
+        $bpd = BPD::find($id);
+        $old_data = $bpd;
+        $bpd->delete();
 
         Log::create([
             'ip_address' => $request->ip(),

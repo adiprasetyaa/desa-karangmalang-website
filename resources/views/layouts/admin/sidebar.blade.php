@@ -47,61 +47,174 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-stack"></i>
-                        <span>Components</span>
-                    </a>
-                </li>
-                <li class="sidebar-title">Forms &amp; Tables</li>
-
-                <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-hexagon-fill"></i>
-                        <span>Form Elements</span>
-                    </a>
-
-                </li>
-                <li class="sidebar-title">Extra UI</li>
-                <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-pentagon-fill"></i>
-                        <span>Widgets</span>
-                    </a>
-                </li>
+                <li class="sidebar-title">Informasi Desa</li>
 
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-egg-fill"></i>
-                        <span>Icons</span>
+                        <span>Profil Desa</span>
                     </a>
 
                     <ul class="submenu ">
 
                         <li class="submenu-item  ">
-                            <a href="ui-icons-bootstrap-icons.html" class="submenu-link">Bootstrap Icons </a>
+                            <a href="ui-icons-fontawesome.html" class="submenu-link">Tentang Kami</a>
 
                         </li>
 
                         <li class="submenu-item  ">
-                            <a href="ui-icons-fontawesome.html" class="submenu-link">Fontawesome</a>
+                            <a href="ui-icons-bootstrap-icons.html" class="submenu-link">Visi &amp; Misi </a>
 
                         </li>
 
                         <li class="submenu-item  ">
-                            <a href="ui-icons-dripicons.html" class="submenu-link">Dripicons</a>
+                            <a href="ui-icons-fontawesome.html" class="submenu-link">Geografis Desa</a>
+
+                        </li>
+
+                        <li class="submenu-item  ">
+                            <a href="ui-icons-dripicons.html" class="submenu-link">Demografis Desa</a>
                         </li>
                     </ul>
 
 
                 </li>
 
-                <li class="sidebar-title">Pages</li>
+                <li class="sidebar-title">Pemerintahan</li>
 
                 <li class="sidebar-item  ">
                     <a href="application-email.html" class='sidebar-link'>
                         <i class="bi bi-envelope-fill"></i>
-                        <span>Email Application</span>
+                        <span>Struktur Organisasi</span>
+                    </a>
+
+
+                </li>
+
+                <li class="sidebar-item  ">
+                    <a href="application-email.html" class='sidebar-link'>
+                        <i class="bi bi-envelope-fill"></i>
+                        <span>Perangkat Desa</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-egg-fill"></i>
+                        <span>Lembaga Desa</span>
+                    </a>
+
+                    <ul class="submenu ">
+
+                        <li class="submenu-item  ">
+                            <a href="{{ route('admin.bpd.index') }}" class="submenu-link {{ request()->routeIs('admin.bpd.index') ? 'active' : '' }}">BPD</a>
+
+                        </li>
+
+                        <li class="submenu-item  ">
+                            <a href="{{ route('admin.lpmd.index') }}" class="submenu-link {{ request()->routeIs('admin.lpmd.index') ? 'active' : '' }}">LPMD</a>
+
+                        </li>
+
+                        <li class="submenu-item  ">
+                            <a href="ui-icons-fontawesome.html" class="submenu-link">LKD</a>
+
+                        </li>
+
+                        <li class="submenu-item  ">
+                            <a href="ui-icons-dripicons.html" class="submenu-link">LINMAS</a>
+                        </li>
+
+                        <li class="submenu-item  ">
+                            <a href="ui-icons-fontawesome.html" class="submenu-link">BUMDES</a>
+
+                        </li>
+
+                        <li class="submenu-item  ">
+                            <a href="ui-icons-dripicons.html" class="submenu-link">SPMDES</a>
+                        </li>
+                    </ul>
+
+
+                </li>
+
+                <li class="sidebar-title">Informasi Desa</li>
+
+
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-egg-fill"></i>
+                        <span>Layanan Publik</span>
+                    </a>
+
+                    <ul class="submenu ">
+
+                        <li class="submenu-item  ">
+                            <a href="ui-icons-bootstrap-icons.html" class="submenu-link">KTP</a>
+
+                        </li>
+
+                        <li class="submenu-item  ">
+                            <a href="ui-icons-fontawesome.html" class="submenu-link">KK</a>
+
+                        </li>
+
+                        <li class="submenu-item  ">
+                            <a href="ui-icons-dripicons.html" class="submenu-link">Akta Kelahiran</a>
+                        </li>
+
+                        <li class="submenu-item  ">
+                            <a href="ui-icons-dripicons.html" class="submenu-link">Lain-lain</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-egg-fill"></i>
+                        <span>Informasi Publik</span>
+                    </a>
+
+                    <ul class="submenu ">
+
+                        <li class="submenu-item  ">
+                            <a href="ui-icons-bootstrap-icons.html" class="submenu-link">Berita</a>
+
+                        </li>
+
+                        <li class="submenu-item  ">
+                            <a href="ui-icons-fontawesome.html" class="submenu-link">Pengumuman</a>
+
+                        </li>
+
+                        <li class="submenu-item  ">
+                            <a href="ui-icons-dripicons.html" class="submenu-link">Agenda Kegiatan</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+
+                <li class="sidebar-item  ">
+                    <a href="application-email.html" class='sidebar-link'>
+                        <i class="bi bi-envelope-fill"></i>
+                        <span>Galeri</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item  ">
+                    <a href="application-email.html" class='sidebar-link'>
+                        <i class="bi bi-envelope-fill"></i>
+                        <span>Download</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-title">Setting</li>
+
+                <li class="sidebar-item  ">
+                    <a href="application-email.html" class='sidebar-link'>
+                        <i class="bi bi-envelope-fill"></i>
+                        <span>Logout</span>
                     </a>
 
 

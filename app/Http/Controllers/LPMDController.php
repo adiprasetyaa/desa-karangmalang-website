@@ -14,7 +14,7 @@ class LPMDController extends Controller
     public function index()
     {
         $lpmd = LPMD::all();
-        return view('lpmd.index', compact('lpmd'));
+        return view('admin.pemerintahan.lembaga_desa.lpmd.index', compact('lpmd'));
     }
 
     /**
@@ -56,13 +56,13 @@ class LPMDController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(LPMD $lPMD)
+    public function show($id)
     {
+        $lpmd = LPMD::find($id);
         return response()->json([
             'success' => true,
             'status_code' => 200,
-            'message' => 'Data LPMD berhasil ditampilkan',
-            'data' => $lPMD
+            'data' => $lpmd
         ]);
     }
 
@@ -77,21 +77,25 @@ class LPMDController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, LPMD $lPMD)
+    public function update(Request $request, $id)
     {
+
+        $lpmd = LPMD::find($id);
+
         $attributes = $request->validate([
-            'nama' => 'required|string',
-            'jabatan' => 'required|string',
-            'alamat' => 'required|string',
+            'Nama' => 'required|string',
+            'Jabatan' => 'required|string',
+            'Alamat' => 'required|string',
         ]); 
 
-        $lPMD->update($attributes);
+        $old_data = $lpmd;
+        $lpmd->update($attributes);
         
         Log::create([
             'ip_address' => $request->ip(),
             'user_id' => auth()->id(),
             'message' => 'mengubah data LPMD',
-            'old_data' => json_encode($lPMD),
+            'old_data' => json_encode($old_data),
             'new_data' => json_encode($attributes),
         ]);
         
@@ -105,10 +109,11 @@ class LPMDController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, LPMD $lPMD)
+    public function destroy(Request $request, $id)
     {
-        $old_data = $lPMD;
-        $lPMD->delete();
+        $lpmd = LPMD::find($id);
+        $old_data = $lpmd;
+        $lpmd->delete();
 
         Log::create([
             'ip_address' => $request->ip(),
