@@ -13,7 +13,7 @@
                 <p>
                     Apakah anda yakin akan menghapus data ini?
                 </p>
-                <p id="deleteLinmas_namalinmas"></p>
+                <p id="deleteBpd_namabpd"></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn" data-bs-dismiss="modal">
@@ -34,16 +34,16 @@
     let deleteModal = document.getElementById('deleteModal');
     deleteModal.addEventListener('show.bs.modal', function (event) {
         let button = event.relatedTarget
-        let idLinmas = button.getAttribute('data-bs-idlinmas');
+        let idSpmdes = button.getAttribute('data-bs-idspmdes');
         // add attribute to delete button
-        deleteButton.setAttribute('data-bs-idlinmas', idLinmas);
-        console.log('del:', idLinmas);
+        deleteButton.setAttribute('data-bs-idspmdes', idSpmdes);
+        console.log('del:', idSpmdes);
     });
 
     deleteButton.addEventListener('click', function (event) {
-        let idLinmas = this.getAttribute('data-bs-idlinmas');
-        let url = `{{ route('admin.linmas.destroy', ':id') }}`;
-        url = url.replace(':id', idLinmas);
+        let idSpmdes = this.getAttribute('data-bs-idspmdes');
+        let url = `{{ route('admin.spmdes.destroy', ':id') }}`;
+        url = url.replace(':id', idSpmdes);
 
         $.ajax({
             url: url,
@@ -54,7 +54,7 @@
             },
             success: function (response) {
                 console.log(response);
-                let tr = document.querySelector(`tr[data-bs-idlinmas="${idLinmas}"]`);
+                let tr = document.querySelector(`tr[data-bs-idspmdes="${idSpmdes}"]`);
                 if (tr) {
                     tr.remove();
                 }

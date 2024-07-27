@@ -121,9 +121,9 @@
             console.log(linmasRow);
             if (linmasRow.length) {
 
-                linmasRow.find('td').eq(0).text(new_data.Nama);
-                linmasRow.find('td').eq(1).text(new_data.Jabatan);
-                linmasRow.find('td').eq(2).text(new_data.Alamat);
+                linmasRow.find('td').eq(1).text(new_data.Nama);
+                linmasRow.find('td').eq(2).text(new_data.Jabatan);
+                linmasRow.find('td').eq(3).text(new_data.Alamat);
             } else {
                 console.error('Row not found');
             }

@@ -14,8 +14,8 @@ class SPMDESController extends Controller
     public function index()
     {
         //
-        $spm = SPMDES::all();
-        return view('spm.index', compact('spm'));
+        $spmdes = SPMDES::all();
+        return view('admin.pemerintahan.lembaga_desa.spmdes.index', compact('spmdes'));
     }
 
     /**
@@ -32,8 +32,8 @@ class SPMDESController extends Controller
     public function store(Request $request)
     {
         $attributes = $request->validate([
-            'nama' => 'required|string',
-            'jabatan' => 'required|string',
+            'Nama' => 'required|string',
+            'Jabatan' => 'required|string',
         ]); 
 
         SPMDES::create($attributes);
@@ -56,12 +56,13 @@ class SPMDESController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(SPMDES $sPMDES)
+    public function show($id)
     {
+        $spmdes = SPMDES::find($id);
         return response()->json([
             'success' => true,
             'status_code' => 200,
-            'data' => $sPMDES
+            'data' => $spmdes
         ]);
     }
 
@@ -76,15 +77,16 @@ class SPMDESController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SPMDES $sPMDES)
+    public function update(Request $request, $id)
     {
+        $spmdes = SPMDES::find($id);
         $attributes = $request->validate([
-            'nama' => 'required|string',
-            'jabatan' => 'required|string',
+            'Nama' => 'required|string',
+            'Jabatan' => 'required|string',
         ]);
 
-        $old_data = $sPMDES;
-        $sPMDES->update($attributes);
+        $old_data = $spmdes;
+        $spmdes->update($attributes);
 
         Log::create([
             'ip_address' => $request->ip(),
@@ -104,11 +106,11 @@ class SPMDESController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, SPMDES $sPMDES)
+    public function destroy(Request $request, $id)
     {
-        $old_data = $sPMDES;
-
-        $sPMDES->delete();
+        $spmdes = SPMDES::find($id);
+        $old_data = $spmdes;
+        $spmdes->delete();
 
         Log::create([
             'ip_address' => $request->ip(),

@@ -46,14 +46,16 @@
                     <table class="table" id="table1">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Nama</th>
                                 <th>Jabatan</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($lkd as $lkd_data)
+                            @foreach ($lkd as $index => $lkd_data)
                                 <tr data-bs-idlkd="{{ $lkd_data->id }}">
+                                    <td>{{ $index + 1 }}</td>
                                     <td>{{ $lkd_data->Nama }}</td>
                                     <td>{{ $lkd_data->Jabatan }}</td>
                                     <td>

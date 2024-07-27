@@ -14,7 +14,7 @@ class BUMDESController extends Controller
     public function index()
     {
         $bumdes = BUMDES::all();
-        return view('bumdes.index', compact('bumdes'));
+        return view('admin.pemerintahan.lembaga_desa.bumdes.index', compact('bumdes'));
     }
 
     /**
@@ -55,12 +55,13 @@ class BUMDESController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(BUMDES $bUMDES)
+    public function show($id)
     {
+        $bumdes = BUMDES::find($id);
         return response()->json([
             'success' => true,
             'status_code' => 200,
-            'data' => $bUMDES
+            'data' => $bumdes
         ]);
     }
 
@@ -75,16 +76,18 @@ class BUMDESController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BUMDES $bUMDES)
+    public function update(Request $request,  $id)
     {
+
+        $bumdes = BUMDES::find($id);
         
         $attributes = $request->validate([
-            'nama' => 'required|string',
-            'jabatan' => 'required|string',
+            'Nama' => 'required|string',
+            'Jabatan' => 'required|string',
         ]); 
 
-        $old_data = $bUMDES;
-        $bUMDES->update($attributes);
+        $old_data = $bumdes;
+        $bumdes->update($attributes);
         
         Log::create([
             'ip_address' => $request->ip(),
@@ -104,11 +107,13 @@ class BUMDESController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, BUMDES $bUMDES)
+    public function destroy(Request $request, $id)
     {
 
-        $old_data = $bUMDES;
-        $bUMDES->delete();
+        $bumdes = BUMDES::find($id);
+
+        $old_data = $bumdes;
+        $bumdes->delete();
 
         Log::create([
             'ip_address' => $request->ip(),

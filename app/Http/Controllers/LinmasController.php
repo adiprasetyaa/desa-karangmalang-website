@@ -115,7 +115,7 @@ class LinmasController extends Controller
         $linmas->delete();
         
         Log::create([
-            'ip_address' => $request()->ip(),
+            'ip_address' => $request->ip(),
             'user_id' => auth()->id(),
             'message' => 'menghapus data Linmas',
             'old_data' => json_encode($old_data),

@@ -55,10 +55,20 @@
             success: function (response) {
                 console.log(response);
                 let tr = document.querySelector(`tr[data-bs-idbpd="${idBpd}"]`);
-                tr.remove();
+                if (tr) {
+                    tr.remove();
+                }
+                updateTableNumbering();
             }
         });
 
 
     });
+
+    function updateTableNumbering() {
+        let table = document.getElementById('table1').getElementsByTagName('tbody')[0];
+        for (let i = 0, row; row = table.rows[i]; i++) {
+            row.cells[0].innerHTML = i + 1;
+        }
+    }
 </script>

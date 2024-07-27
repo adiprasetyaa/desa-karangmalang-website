@@ -21,10 +21,6 @@
                     <div class="form-group">
                         <input id="jabatan" name="jabatan" placeholder="-" class="form-control">
                     </div>
-                    <label for="alamat">Alamat</label>
-                    <div class="form-group">
-                        <input id="alamat" name="alamat" placeholder="-" class="form-control">
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-secondary"
@@ -32,7 +28,7 @@
                         <i class="bx bx-x d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Close</span>
                     </button>
-                    <button type="button" id="lpmd_update" class="btn btn-primary ms-1"
+                    <button type="button" id="spmdes_update" class="btn btn-primary ms-1"
                         data-bs-dismiss="modal">
                         <i class="bx bx-check d-block d-sm-none"></i>
                         <span class="d-none d-sm-block">Update</span>
@@ -44,15 +40,15 @@
 </div>
 
 <script>
-    let changed_Lpmd_id = -1;
+    let changed_Spmdes_id = -1;
     let editModal = document.getElementById('editForm')
     editModal.addEventListener('show.bs.modal', function (event) {
         let button = event.relatedTarget
-        let idLpmd = button.getAttribute('data-bs-idlpmd');
-        changed_Lpmd_button = idLpmd;
+        let idSpmdes = button.getAttribute('data-bs-idspmdes');
+        changed_Spmdes_button = idSpmdes;
         
-        let url = "{{ route('admin.lpmd.show', ':id') }}";
-        url = url.replace(':id', idLpmd); 
+        let url = "{{ route('admin.spmdes.show', ':id') }}";
+        url = url.replace(':id', idSpmdes); 
 
         fetch(url, {
                 method: 'GET',
@@ -68,16 +64,15 @@
             return response.json();
         })
         .then(data => {
-            const lpmd = data.data;
+            const spmdes = data.data;
            
-            $('#myModalLabel33').text(`Data LPMD`);
-            $('#nama').val(lpmd.Nama);
-            $('#jabatan').val(lpmd.Jabatan);
-            $('#alamat').val(lpmd.Alamat);
+            $('#myModalLabel33').text(`Data spmdes`);
+            $('#nama').val(spmdes.Nama);
+            $('#jabatan').val(spmdes.Jabatan);
     
 
             // add data-bs to update button
-            $('#lpmd_update').attr('data-bs-idlpmd', lpmd.id);
+            $('#spmdes_update').attr('data-bs-idspmdes', spmdes.id);
 
 
         })
@@ -86,12 +81,12 @@
         });
     });
 
-    let updateButton =  document.getElementById('lpmd_update');
+    let updateButton =  document.getElementById('spmdes_update');
     updateButton.addEventListener('click', function(event){
-        let idLpmd = updateButton.getAttribute('data-bs-idlpmd');
-        changed_Lpmd_id = idLpmd;
-        let url = "{{ route('admin.lpmd.update', ':id') }}";
-        url = url.replace(':id', idLpmd); 
+        let idSpmdes = updateButton.getAttribute('data-bs-idspmdes');
+        changed_Spmdes_id = idSpmdes;
+        let url = "{{ route('admin.spmdes.update', ':id') }}";
+        url = url.replace(':id', idSpmdes); 
 
         let new_data = {
             _method: 'PATCH',
@@ -117,13 +112,12 @@
         .then(data => {
             // Replace Data
             console.log(data);
-            let lpmdRow = $(`tr[data-bs-idlpmd="${idLpmd}"]`);
-            console.log(lpmdRow);
-            if (lpmdRow.length) {
+            let spmdesRow = $(`tr[data-bs-idSpmdes="${idSpmdes}"]`);
+            console.log(spmdesRow);
+            if (spmdesRow.length) {
 
-                lpmdRow.find('td').eq(1).text(new_data.Nama);
-                lpmdRow.find('td').eq(2).text(new_data.Jabatan);
-                lpmdRow.find('td').eq(3).text(new_data.Alamat);
+                spmdesRow.find('td').eq(1).text(new_data.Nama);
+                spmdesRow.find('td').eq(2).text(new_data.Jabatan);
             } else {
                 console.error('Row not found');
             }

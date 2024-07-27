@@ -114,8 +114,8 @@
             console.log(lkdRow);
             if (lkdRow.length) {
 
-                lkdRow.find('td').eq(0).text(new_data.Nama);
-                lkdRow.find('td').eq(1).text(new_data.Jabatan);
+                lkdRow.find('td').eq(1).text(new_data.Nama);
+                lkdRow.find('td').eq(2).text(new_data.Jabatan);
             } else {
                 console.error('Row not found');
             }

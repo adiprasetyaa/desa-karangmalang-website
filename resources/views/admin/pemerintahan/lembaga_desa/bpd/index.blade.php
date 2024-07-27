@@ -46,6 +46,7 @@
                     <table class="table" id="table1">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Nama</th>
                                 <th>Jabatan</th>
                                 <th>Alamat</th>
@@ -53,8 +54,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($bpd as $bpd_data)
+                            @foreach ($bpd as $index => $bpd_data)
                                 <tr data-bs-idbpd="{{ $bpd_data->id }}">
+                                    <td>{{ $index + 1 }}</td>
                                     <td>{{ $bpd_data->Nama }}</td>
                                     <td>{{ $bpd_data->Jabatan }}</td>
                                     <td>{{ $bpd_data->Alamat }}</td>
