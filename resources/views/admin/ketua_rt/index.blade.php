@@ -38,9 +38,16 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title">
-                    Data Ketua RT
-                </h5>
+                {{-- div with flex justify --}}
+                <div class="d-flex justify-content-between">
+                    <h5 class="card-title">
+                        Data Ketua RT
+                    </h5>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createForm">
+                        Tambah Data Ketua RT
+                    </button>
+                </div>
+
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -82,6 +89,7 @@
 
     </section>
     <!-- Basic Tables end -->
+@include('admin.ketua_rt.modal.create')     
 @include('admin.ketua_rt.modal.update')
 @include('admin.ketua_rt.modal.delete')
 
