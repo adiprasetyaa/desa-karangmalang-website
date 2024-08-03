@@ -14,6 +14,7 @@
     <link rel="stylesheet" crossorigin href="{{ asset('assets/admin') }}/compiled/css/app-dark.css">
     @yield('css')
     <link rel="stylesheet" crossorigin href="{{ asset('assets/admin') }}/compiled/css/iconly.css">
+    <link rel="stylesheet" href="{{ asset('assets/admin') }}/extensions/toastify-js/src/toastify.css">
 </head>
 
 <body>
@@ -37,6 +38,8 @@
     <script src="{{ asset('assets/admin') }}/compiled/js/app.js"></script>
 
     @yield('javascript')
+
+    <script src="{{ asset('assets/admin') }}/extensions/toastify-js/src/toastify.js"></script>
 </body>
 
 </html>
