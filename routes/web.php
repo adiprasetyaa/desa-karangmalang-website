@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
 use App\Http\Controllers\BPDController;
 use App\Http\Controllers\BUMDESController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,7 @@ use App\Http\Controllers\LPMDController;
 use App\Http\Controllers\PeopleController;
 use App\Http\Controllers\PerangkatDesaController;
 use App\Http\Controllers\PeriodeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\SPMDESController;
 
 Route::get('/', function () {
@@ -66,6 +68,10 @@ Route::group(
         Route::resource('lpmd', LPMDController::class);
         Route::resource('perangkat_desa', PerangkatDesaController::class);
         Route::resource('spmdes', SPMDESController::class);
+
+        Route::resource('post', PostController::class);
+        Route::resource('category', CategoryController::class);
+        
     }
 );
 

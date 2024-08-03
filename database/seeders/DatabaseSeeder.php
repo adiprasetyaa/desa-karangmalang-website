@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminSeeder::class); // administrator
         $this->call(KadesAsOf2024Seeder::class); // kades
         $this->call(LembagaDesaAsOf2024Seeder::class); // lemdes
+        $this->call(CategorySeeder::class);
         
     }
 }
