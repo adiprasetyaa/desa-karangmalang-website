@@ -1,8 +1,7 @@
 @extends('layouts.admin.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('assets/admin')}}/extensions/quill/quill.snow.css">
-<link rel="stylesheet" href="{{ asset('assets/admin')}}/extensions/quill/quill.bubble.css">
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
 @endsection
 
 @section('heading')
@@ -47,7 +46,7 @@
 
                     <label for="content">Content:</label>
                     <!-- Create the editor container -->
-                    <div id="full">
+                    <div id="editor">
                         <p>Desa Karangmalang, Masaran, Sragen</p>
                     </div>
                     <input type="hidden" name="content" id="content"><br><br>
@@ -80,7 +79,7 @@
 
 @section('javascript')
 <script src="{{ asset('assets/admin')}}/extensions/jquery/jquery.min.js"></script>
-<script src="{{ asset('assets/admin')}}/extensions/quill/quill.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <!-- <script src="{{ asset('assets/admin')}}/static/js/pages/quill.js"></script> -->
@@ -89,44 +88,63 @@
 
 </script>
 <script>
-let quill = new Quill("#full", {
-  bounds: "#full-container .editor",
+const toolbarOptions = [
+    [{ 'font': [] }],
+    [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+  ['blockquote', 'code-block'],
+  
+  [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+  [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'list': 'check' }],
+  [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+  [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+  [{ 'direction': 'rtl' }],                         // text direction
+  ['link', 'image', 'video', 'formula'],
+
+
+  [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+  [{ 'align': [] }],
+
+  ['clean']                                         // remove formatting button
+];
+
+const quill = new Quill('#editor', {
   modules: {
-    toolbar: [
-      [{ font: [] }, { size: [] }],
-      ["bold", "italic", "underline", "strike"],
-      [{ color: [] }, { background: [] }],
-      [{ script: "super" }, { script: "sub" }],
-      [
-        { list: "ordered" },
-        { list: "bullet" },
-        { indent: "-1" },
-        { indent: "+1" },
-      ],
-      ["direction", { align: [] }],
-      ["link", "image", "video"],
-      ["clean"],
-    ],
+    toolbar: toolbarOptions
   },
-  theme: "snow",
+  theme: 'snow'
 });
-
 document.getElementById('submitPostButton').addEventListener('click', function() {
-    var form = document.getElementById('postForm');
-    var formData = new FormData(form);
-    formData.set('content', quill.root.innerHTML);
+    // axios post data with jquery
 
-    const url = "{{ route('admin.post.store') }}"
-    axios.post(url, formData)
-        .then(function (response) {
-            if (response.data.success) {
-                alert('Post created successfully');
-            }
-        })
-        .catch(function (error) {
-            console.log(error);
-            alert('An error occurred while creating the post');
-        });
+    const title = $('#title').val();
+    const content = quill.getContents();
+
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('content', JSON.stringify(content));
+    // if image exists
+
+    if($('#image')[0].files[0] ) {
+        formData.append('image', $('#image')[0].files[0]);
+    }
+
+    if($('#thumbnail')[0].files[0] ) {
+        formData.append('thumbnail', $('#thumbnail')[0].files[0]);
+    }
+    formData.append('category_ids', $('#categories').val());
+
+    axios.post('/admin/post', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    }).then(response => {
+        console.log(response);
+    }).catch(error => {
+        console.log(error);
+    });
+
 });
 </script>
 

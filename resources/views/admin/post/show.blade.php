@@ -1,8 +1,7 @@
 @extends('layouts.admin.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('assets/admin')}}/extensions/quill/quill.snow.css">
-<link rel="stylesheet" href="{{ asset('assets/admin')}}/extensions/quill/quill.bubble.css">
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
 @endsection
 
 @section('heading')
@@ -39,12 +38,13 @@
                 <h4 class="card-title">{{ $post->title }}</h4>
             </div>
             <div class="card-body">
+                <div class="hide" hidden>
+                    <div id="editor" hidden>
 
-                    <div id="postcontent">
-                        {!! $post->content !!}
                     </div>
-                    
-               
+                </div>
+                <div id="semantichtml" class="ql-editor">
+                </div>
             </div>
         </div>
     </section>
@@ -52,7 +52,7 @@
 
 @section('javascript')
 <script src="{{ asset('assets/admin')}}/extensions/jquery/jquery.min.js"></script>
-<script src="{{ asset('assets/admin')}}/extensions/quill/quill.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <!-- <script src="{{ asset('assets/admin')}}/static/js/pages/quill.js"></script> -->
@@ -61,45 +61,21 @@
 
 </script>
 <script>
-let quill = new Quill("#full", {
-  bounds: "#full-container .editor",
-  modules: {
-    toolbar: [
-      [{ font: [] }, { size: [] }],
-      ["bold", "italic", "underline", "strike"],
-      [{ color: [] }, { background: [] }],
-      [{ script: "super" }, { script: "sub" }],
-      [
-        { list: "ordered" },
-        { list: "bullet" },
-        { indent: "-1" },
-        { indent: "+1" },
-      ],
-      ["direction", { align: [] }],
-      ["link", "image", "video"],
-      ["clean"],
-    ],
-  },
-  theme: "snow",
+
+const quill = new Quill('#editor', {
+ 
+  theme: 'snow',
+  readOnly: true,  // Set to read-only mode
 });
 
-document.getElementById('submitPostButton').addEventListener('click', function() {
-    var form = document.getElementById('postForm');
-    var formData = new FormData(form);
-    formData.set('content', quill.root.innerHTML);
 
-    const url = "{{ route('admin.post.store') }}"
-    axios.post(url, formData)
-        .then(function (response) {
-            if (response.data.success) {
-                alert('Post created successfully');
-            }
-        })
-        .catch(function (error) {
-            console.log(error);
-            alert('An error occurred while creating the post');
-        });
-});
+
+const rapikanwkwkw = {!! $post->content !!}; 
+quill.setContents(rapikanwkwkw);
+
+
+$('#semantichtml').html(quill.getSemanticHTML());
 </script>
+
 
 @endsection
