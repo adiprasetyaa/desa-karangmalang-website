@@ -2,7 +2,7 @@
 <div class="preloader d-flex align-items-center justify-content-center">
         <div class="preloader-circle"></div>
         <div class="preloader-img">
-            <img src="{{asset('assets/guest')}}/img/core-img/leaf.png" alt="">
+            <img src="{{asset('assets/guest')}}/static/images/logo/logo_karangmalang_1x1.png" style="object-fit: contain;" alt="">
         </div>
     </div>
 
