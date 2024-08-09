@@ -13,7 +13,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+        return view('admin.post.index', [
+            'posts' => $posts
+        ]);
     }
 
     /**
@@ -89,7 +92,13 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $post = Post::find($id);
+        $categories = Category::all();
+
+        return view('admin.post.edit', [
+            'post' => $post,
+            'categories' => $categories
+        ]);
     }
 
     /**
