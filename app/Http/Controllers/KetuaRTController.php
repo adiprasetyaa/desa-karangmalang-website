@@ -6,9 +6,14 @@ use App\Models\KetuaRT;
 use App\Models\Log;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 
 class KetuaRTController extends Controller
 {
+    public function view(){
+        return view('admin.ketua_rt.view');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -21,7 +26,20 @@ class KetuaRTController extends Controller
             $date = Carbon::createFromFormat('Y-m-d', $k->tanggal_lahir)->locale('id');
             $k->ttl = $k->tempat_lahir.', '.$date->translatedFormat('d F Y');
         }
-        return view('admin.ketua_rt.index', compact('ketuart'));
+
+        if($ketuart->isEmpty()){
+            return response()->json([
+                'success' => false,
+                'status_code' => 404,
+                'message' => 'Data Ketua RT tidak ditemukan'
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'status_code' => 200,
+            'data' => $ketuart
+        ]);
     }
 
     /**
@@ -39,7 +57,6 @@ class KetuaRTController extends Controller
     {
         $attributes = $request->validate([
             'Nama' => 'required|string',
-            // 'TTL' => 'required|date',
             'tempat_lahir' => 'required|string',
             'tanggal_lahir' => 'required|date',
             'Alamat' => 'required|string',
@@ -49,7 +66,7 @@ class KetuaRTController extends Controller
             // 'PeriodeEnd' => 'required|date',
         ]);
 
-        KetuaRT::create($attributes);
+        $ketuaRT = KetuaRT::create($attributes);
 
         Log::create([
             'ip_address' => $request->ip(),
@@ -62,7 +79,8 @@ class KetuaRTController extends Controller
         return response()->json([
             'success' => true,
             'status_code' => 200,
-            'message' => 'Data Ketua RT berhasil ditambahkan'
+            'message' => 'Data Ketua RT berhasil ditambahkan',
+            'data' => $ketuaRT
         ]);
     }
 
@@ -120,7 +138,8 @@ class KetuaRTController extends Controller
         return response()->json([
             'success' => true,
             'status_code' => 200,
-            'message' => 'Data Ketua RT berhasil diubah'
+            'message' => 'Data Ketua RT berhasil diubah',
+            'data' => $ketuaRT
         ]);
     }
 

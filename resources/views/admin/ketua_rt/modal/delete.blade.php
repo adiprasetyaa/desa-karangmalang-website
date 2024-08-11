@@ -20,7 +20,7 @@
                     <i class="bx bx-x d-block d-sm-none"></i>
                     <span class="d-none d-sm-block">Tidak</span>
                 </button>
-                <button type="button" class="btn btn-primary ms-1" data-bs-dismiss="modal" id="deleteButton">
+                <button type="button" class="btn btn-primary ms-1" data-bs-dismiss="modal" id="destroyButton">
                     <i class="bx bx-check d-block d-sm-none"></i>
                     <span class="d-none d-sm-block">Yakin</span>
                 </button>
@@ -28,37 +28,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    let deleteButton = document.getElementById('deleteButton');
-    let deleteModal = document.getElementById('deleteModal');
-    deleteModal.addEventListener('show.bs.modal', function (event) {
-        let button = event.relatedTarget
-        let idKetua = button.getAttribute('data-bs-idketua');
-        // add attribute to delete button
-        deleteButton.setAttribute('data-bs-idketua', idKetua);
-        console.log('del:', idKetua);
-    });
-
-    deleteButton.addEventListener('click', function (event) {
-        let idKetua = this.getAttribute('data-bs-idketua');
-        let url = `{{ route('admin.ketua_rt.destroy', ':id') }}`;
-        url = url.replace(':id', idKetua);
-
-        $.ajax({
-            url: url,
-            method: 'POST',
-            data: {
-                _token: '{{ csrf_token() }}',
-                _method: 'DELETE'
-            },
-            success: function (response) {
-                console.log(response);
-                let tr = document.querySelector(`tr[data-bs-idketua="${idKetua}"]`);
-                tr.remove();
-            }
-        });
-
-
-    });
-</script>

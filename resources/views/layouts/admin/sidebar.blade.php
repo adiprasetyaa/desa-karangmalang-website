@@ -40,8 +40,8 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item {{ request()->routeIs('admin.ketua_rt.index') ? 'active' : '' }}">
-                    <a href="{{ route('admin.ketua_rt.index') }}" class='sidebar-link'>
+                <li class="sidebar-item {{ request()->routeIs('admin.ketua_rt.view') ? 'active' : '' }}">
+                    <a href="{{ route('admin.ketua_rt.view') }}" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
                         <span>Ketua RT</span>
                     </a>
@@ -140,6 +140,12 @@
 
                 <li class="sidebar-title">Informasi Desa</li>
 
+                <li class="sidebar-item  ">
+                    <a href="{{ route('admin.post.index') }}" class="sidebar-link {{ request()->routeIs('admin.post.index') ? 'active' : '' }}">
+                        <i class="bi bi-envelope-fill"></i>
+                        <span>Postingan</span>
+                    </a>
+                </li>
 
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
