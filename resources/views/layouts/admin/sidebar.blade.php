@@ -140,6 +140,12 @@
 
                 <li class="sidebar-title">Informasi Desa</li>
 
+                <li class="sidebar-item  ">
+                    <a href="{{ route('admin.post.index') }}" class="sidebar-link {{ request()->routeIs('admin.post.index') ? 'active' : '' }}">
+                        <i class="bi bi-envelope-fill"></i>
+                        <span>Postingan</span>
+                    </a>
+                </li>
 
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
