@@ -107,7 +107,7 @@
                     <ul class="submenu ">
 
                         <li class="submenu-item  ">
-                            <a href="{{ route('admin.bpd.index') }}" class="submenu-link {{ request()->routeIs('admin.bpd.index') ? 'active' : '' }}">BPD</a>
+                            <a href="{{ route('admin.bpd.view') }}" class="submenu-link {{ request()->routeIs('admin.bpd.view') ? 'active' : '' }}">BPD</a>
 
                         </li>
 

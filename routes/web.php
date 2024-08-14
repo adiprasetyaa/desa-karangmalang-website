@@ -56,11 +56,13 @@ Route::group(
         Route::get('/dashboard', [DashboardController::class, 'create'])->name('dashboard');
         // -- View --
         Route::get('ketua_rt', [KetuaRTController::class, 'view'])->name('ketua_rt.view');
+        Route::get('bpd', [BPDController::class, 'view'])->name('bpd.view');
         
         // -- Resourceful API --
 
         Route::group(['prefix' => 'api', 'as' => 'api.'],function(){
             Route::resource('ketua_rt', KetuaRTController::class);
+            Route::resource('bpd', BPDController::class);
         });
 
         // old
@@ -69,7 +71,6 @@ Route::group(
         Route::resource('periode', PeriodeController::class);
         Route::resource('kades_periode', KadesPeriodeController::class);
 
-        Route::resource('bpd', BPDController::class);
         Route::resource('bumdes', BUMDESController::class);
         Route::resource('linmas', LinmasController::class);
         Route::resource('lkd', LKDController::class);

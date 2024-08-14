@@ -8,13 +8,31 @@ use Illuminate\Http\Request;
 
 class BPDController extends Controller
 {
+    public function view()
+    {
+        return view('admin.pemerintahan.lembaga_desa.bpd.view');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $bpd = BPD::all();
-        return view('admin.pemerintahan.lembaga_desa.bpd.index', compact('bpd'));
+
+        if($bpd->isEmpty()){
+            return response()->json([
+                'success' => false,
+                'status_code' => 404,
+                'message' => 'Data BPD tidak ditemukan'
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'status_code' => 200,
+            'data' => $bpd
+        ]);
 
         // return view('admin.ketua_rt.index', compact('ketuart'));
     }
@@ -33,12 +51,12 @@ class BPDController extends Controller
     public function store(Request $request)
     {
         $attributes = $request->validate([
-            'nama' => 'required|string',
-            'jabatan' => 'required|string',
-            'alamat' => 'required|string',
+            'Nama' => 'required|string',
+            'Jabatan' => 'required|string',
+            'Alamat' => 'required|string',
         ]); 
 
-        BPD::create($attributes);
+        $bpd = BPD::create($attributes);
         
         Log::create([
             'ip_address' => $request->ip(),
@@ -51,7 +69,8 @@ class BPDController extends Controller
         return response()->json([
             'success' => true,
             'status_code' => 200,
-            'message' => 'Data BPD berhasil ditambahkan'
+            'message' => 'Data BPD berhasil ditambahkan',
+            'data' => $bpd
         ]);
     }
 
@@ -104,7 +123,8 @@ class BPDController extends Controller
         return response()->json([
             'success' => true,
             'status_code' => 200,
-            'message' => 'Data BPD berhasil diubah'
+            'message' => 'Data BPD berhasil diubah',
+            'data' => $bpd
         ]);
     }
 
@@ -128,7 +148,8 @@ class BPDController extends Controller
         return response()->json([
             'success' => true,
             'status_code' => 200,
-            'message' => 'Data BPD berhasil dihapus'
+            'message' => 'Data BPD berhasil dihapus',
+            'data' => $bpd
         ]);
     }
 }
