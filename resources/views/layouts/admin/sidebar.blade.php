@@ -123,7 +123,7 @@
                         </li>
 
                         <li class="submenu-item  ">
-                            <a href="{{ route('admin.lpmd.index') }}" class="submenu-link {{ request()->routeIs('admin.lpmd.index') ? 'active' : '' }}">LPMD</a>
+                            <a href="{{ route('admin.lpmd.view') }}" class="submenu-link {{ request()->routeIs('admin.lpmd.view') ? 'active' : '' }}">LPMD</a>
                         </li>
 
                         <li class="submenu-item  ">

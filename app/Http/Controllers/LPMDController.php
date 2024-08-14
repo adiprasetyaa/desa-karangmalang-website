@@ -8,13 +8,32 @@ use Illuminate\Http\Request;
 
 class LPMDController extends Controller
 {
+    public function view()
+    {
+        return view('admin.pemerintahan.lembaga_desa.lpmd.view');
+    }
+
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $lpmd = LPMD::all();
-        return view('admin.pemerintahan.lembaga_desa.lpmd.index', compact('lpmd'));
+
+        if (!$lpmd) {
+            return response()->json([
+                'success' => false,
+                'status_code' => 500,
+                'message' => 'Data LPMD tidak ditemukan'
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'status_code' => 200,
+            'data' => $lpmd
+        ]);
     }
 
     /**
@@ -36,8 +55,16 @@ class LPMDController extends Controller
             'Alamat' => 'required|string',
         ]); 
 
-        LPMD::create($attributes);
+        $lpmd = LPMD::create($attributes);
         
+        if (!$lpmd) {
+            return response()->json([
+                'success' => false,
+                'status_code' => 500,
+                'message' => 'Data LPMD gagal ditambahkan'
+            ]);
+        }
+
         Log::create([
             'ip_address' => $request->ip(),
             'user_id' => auth()->id(),
@@ -49,7 +76,8 @@ class LPMDController extends Controller
         return response()->json([
             'success' => true,
             'status_code' => 200,
-            'message' => 'Data LPMD berhasil ditambahkan'
+            'message' => 'Data LPMD berhasil ditambahkan',
+            'data' => $lpmd
         ]);
     }
 
@@ -59,6 +87,15 @@ class LPMDController extends Controller
     public function show($id)
     {
         $lpmd = LPMD::find($id);
+
+        if (!$lpmd) {
+            return response()->json([
+                'success' => false,
+                'status_code' => 500,
+                'message' => 'Data LPMD ini tidak ada'
+            ]);
+        }
+
         return response()->json([
             'success' => true,
             'status_code' => 200,
@@ -102,7 +139,8 @@ class LPMDController extends Controller
         return response()->json([
             'success' => true,
             'status_code' => 200,
-            'message' => 'Data LPMD berhasil diubah'
+            'message' => 'Data LPMD berhasil diubah',
+            
         ]);
     }
 
