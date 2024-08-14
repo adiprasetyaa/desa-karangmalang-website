@@ -8,14 +8,31 @@ use Illuminate\Http\Request;
 
 class LKDController extends Controller
 {
+    public function view()
+    {
+        return view('admin.pemerintahan.lembaga_desa.lkd.view');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
         $lkd = LKD::all();
-        return view('admin.pemerintahan.lembaga_desa.lkd.index', compact('lkd'));
+
+        if (!$lkd) {
+            return response()->json([
+                'success' => false,
+                'status_code' => 500,
+                'message' => 'Data LKD tidak ditemukan'
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'status_code' => 200,
+            'data' => $lkd
+        ]);
     }
 
     /**
@@ -32,12 +49,20 @@ class LKDController extends Controller
     public function store(Request $request)
     {
         $attributes = $request->validate([
-            'nama' => 'required|string',
-            'jabatan' => 'required|string',
+            'Nama' => 'required|string',
+            'Jabatan' => 'required|string',
         ]); 
 
-        LKD::create($attributes);
+        $lkd = LKD::create($attributes);
         
+        if (!$lkd) {
+            return response()->json([
+                'success' => false,
+                'status_code' => 500,
+                'message' => 'Data LKD gagal ditambahkan'
+            ]);
+        }
+
         Log::create([
             'ip_address' => $request->ip(),
             'user_id' => auth()->id(),
@@ -49,7 +74,8 @@ class LKDController extends Controller
         return response()->json([
             'success' => true,
             'status_code' => 200,
-            'message' => 'Data LKD berhasil ditambahkan'
+            'message' => 'Data LKD berhasil ditambahkan',
+            'data' => $lkd
         ]);
     }
 
@@ -59,6 +85,15 @@ class LKDController extends Controller
     public function show($id)
     {
         $lkd = LKD::find($id);
+
+        if (!$lkd) {
+            return response()->json([
+                'success' => false,
+                'status_code' => 500,
+                'message' => 'Data LKD tidak ditemukan'
+            ]);
+        }
+
         return response()->json([
             'success' => true,
             'status_code' => 200,
@@ -98,10 +133,19 @@ class LKDController extends Controller
             'new_data' => json_encode($attributes),
         ]);
 
+        if (!$lkd) {
+            return response()->json([
+                'success' => false,
+                'status_code' => 500,
+                'message' => 'Data LKD gagal diubah'
+            ]);
+        }
+
         return response()->json([
             'success' => true,
             'status_code' => 200,
-            'message' => 'Data LKD berhasil diubah'
+            'message' => 'Data LKD berhasil diubah',
+            'data' => $lkd
         ]);
     }
 
