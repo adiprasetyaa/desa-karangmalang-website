@@ -213,7 +213,11 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             error: function(error) {
                 console.error('Error:', error);
-                showToast('error', response.message);
+                if (error.responseJSON.errors) {
+                    showToast('error', "Gagal menambahkan data: Pastikan semua bagian terisi");
+                } else {
+                    showToast('error', error.message);
+                }
             }
         });
     });
@@ -316,7 +320,11 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             error: function(error) {
                 console.error('Error:', error);
-                showToast('error', response.message);
+                if (error.responseJSON.errors) {
+                    showToast('error', "Gagal mengubah data");
+                } else {
+                    showToast('error', error.message);
+                }
             }
         });
     });
@@ -351,7 +359,7 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             error: function (error) {
                 console.error('Error:', error);
-                showToast('error', response.message);
+                showToast('error', "Gagal menghapus data");
             }
         });
     });
