@@ -8,13 +8,29 @@ use Illuminate\Http\Request;
 
 class BUMDESController extends Controller
 {
+    public function view() {
+        return view('admin.pemerintahan.lembaga_desa.bumdes.view');
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $bumdes = BUMDES::all();
-        return view('admin.pemerintahan.lembaga_desa.bumdes.index', compact('bumdes'));
+
+        if (!$bumdes) {
+            return response()->json([
+                'success' => false,
+                'status_code' => 500,
+                'message' => 'Data BUMDES tidak ditemukan'
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'status_code' => 200,
+            'data' => $bumdes
+        ]);
     }
 
     /**
@@ -31,11 +47,11 @@ class BUMDESController extends Controller
     public function store(Request $request)
     {
         $attributes = $request->validate([
-            'nama' => 'required|string',
-            'jabatan' => 'required|string',
+            'Nama' => 'required|string',
+            'Jabatan' => 'required|string',
         ]); 
 
-        BUMDES::create($attributes);
+        $bumdes = BUMDES::create($attributes);
         
         Log::create([
             'ip_address' => $request->ip(),
@@ -44,11 +60,20 @@ class BUMDESController extends Controller
             'old_data' => '-',
             'new_data' => json_encode($attributes),
         ]);
+
+        if(!$bumdes) {
+            return response()->json([
+                'success' => false,
+                'status_code' => 500,
+                'message' => 'Data Bumdes gagal ditambahkan'
+            ]);
+        }
         
         return response()->json([
             'success' => true,
             'status_code' => 200,
-            'message' => 'Data Bumdes berhasil ditambahkan'
+            'message' => 'Data Bumdes berhasil ditambahkan',
+            'data' => $bumdes
         ]);
     }
 
@@ -96,11 +121,20 @@ class BUMDESController extends Controller
             'old_data' => json_encode($old_data),
             'new_data' => json_encode($attributes),
         ]);
+
+        if (!$bumdes) {
+            return response()->json([
+                'success' => false,
+                'status_code' => 500,
+                'message' => 'Data BUMDES gagal diubah'
+            ]);
+        }
         
         return response()->json([
             'success' => true,
             'status_code' => 200,
-            'message' => 'Data BUMDES berhasil diubah'
+            'message' => 'Data BUMDES berhasil diubah',
+            'data' => $bumdes
         ]);
     }
 

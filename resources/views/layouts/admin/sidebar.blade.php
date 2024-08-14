@@ -108,12 +108,14 @@
 
                         <li class="submenu-item  ">
                             <a href="{{ route('admin.bpd.view') }}" class="submenu-link {{ request()->routeIs('admin.bpd.view') ? 'active' : '' }}">BPD</a>
-
+                        </li>
+                 
+                        <li class="submenu-item  ">
+                            <a href="{{ route('admin.bumdes.view') }}" class="submenu-link {{ request()->routeIs('admin.bumdes.view') ? 'active' : '' }}">BUMDES</a>
                         </li>
 
                         <li class="submenu-item  ">
                             <a href="{{ route('admin.lpmd.index') }}" class="submenu-link {{ request()->routeIs('admin.lpmd.index') ? 'active' : '' }}">LPMD</a>
-
                         </li>
 
                         <li class="submenu-item  ">
@@ -123,11 +125,6 @@
 
                         <li class="submenu-item  ">
                             <a href="ui-icons-dripicons.html" class="submenu-link">LINMAS</a>
-                        </li>
-
-                        <li class="submenu-item  ">
-                            <a href="ui-icons-fontawesome.html" class="submenu-link">BUMDES</a>
-
                         </li>
 
                         <li class="submenu-item  ">
