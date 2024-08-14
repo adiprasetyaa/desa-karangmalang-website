@@ -115,16 +115,16 @@
                         </li>
 
                         <li class="submenu-item  ">
+                            <a href="{{ route('admin.linmas.view') }}" class="submenu-link {{ request()->routeIs('admin.linmas.view') ? 'active' : '' }}">Linmas</a>
+                        </li>
+
+                        <li class="submenu-item  ">
                             <a href="{{ route('admin.lpmd.index') }}" class="submenu-link {{ request()->routeIs('admin.lpmd.index') ? 'active' : '' }}">LPMD</a>
                         </li>
 
                         <li class="submenu-item  ">
                             <a href="ui-icons-fontawesome.html" class="submenu-link">LKD</a>
 
-                        </li>
-
-                        <li class="submenu-item  ">
-                            <a href="ui-icons-dripicons.html" class="submenu-link">LINMAS</a>
                         </li>
 
                         <li class="submenu-item  ">

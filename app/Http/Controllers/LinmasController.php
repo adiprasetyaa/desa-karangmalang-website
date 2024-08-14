@@ -8,13 +8,31 @@ use Illuminate\Http\Request;
 
 class LinmasController extends Controller
 {
+    public function view() {
+        return view('admin.pemerintahan.lembaga_desa.linmas.view');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $linmas = Linmas::all();
-        return view('admin.pemerintahan.lembaga_desa.linmas.index', compact('linmas'));
+
+        if (!$linmas) {
+            return response()->json([
+                'success' => false,
+                'status_code' => 500,
+                'message' => 'Data Linmas tidak ditemukan'
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'status_code' => 200,
+            'data' => $linmas
+        ]);
+
     }
 
     /**
@@ -36,8 +54,16 @@ class LinmasController extends Controller
             'Alamat' => 'required|string',
         ]); 
 
-        Linmas::create($attributes);
+        $linmas = Linmas::create($attributes);
         
+        if (!$linmas) {
+            return response()->json([
+                'success' => false,
+                'status_code' => 500,
+                'message' => 'Data Linmas gagal ditambahkan'
+            ]);
+        }
+
         Log::create([
             'ip_address' => $request->ip(),
             'user_id' => auth()->id(),
@@ -49,7 +75,8 @@ class LinmasController extends Controller
         return response()->json([
             'success' => true,
             'status_code' => 200,
-            'message' => 'Data Linmas berhasil ditambahkan'
+            'message' => 'Data Linmas berhasil ditambahkan',
+            'data' => $linmas
         ]);
     }
 
@@ -90,6 +117,14 @@ class LinmasController extends Controller
             $old_data = $linmas;
             $linmas->update($attributes);
             
+            if (!$linmas) {
+                return response()->json([
+                    'success' => false,
+                    'status_code' => 500,
+                    'message' => 'Data Linmas gagal diubah'
+                ]);
+            }
+            
             Log::create([
                 'ip_address' => $request->ip(),
                 'user_id' => auth()->id(),
@@ -101,7 +136,8 @@ class LinmasController extends Controller
             return response()->json([
                 'success' => true,
                 'status_code' => 200,
-                'message' => 'Data Linmas berhasil diubah'
+                'message' => 'Data Linmas berhasil diubah',
+                'data' => $linmas
             ]);
     }
 

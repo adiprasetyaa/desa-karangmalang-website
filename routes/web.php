@@ -58,6 +58,7 @@ Route::group(
         Route::get('ketua_rt', [KetuaRTController::class, 'view'])->name('ketua_rt.view');
         Route::get('bpd', [BPDController::class, 'view'])->name('bpd.view');
         Route::get('bumdes', [BUMDESController::class, 'view'])->name('bumdes.view');
+        Route::get('linmas', [LinmasController::class, 'view'])->name('linmas.view');
         
         // -- Resourceful API --
 
@@ -65,6 +66,7 @@ Route::group(
             Route::resource('ketua_rt', KetuaRTController::class);
             Route::resource('bpd', BPDController::class);
             Route::resource('bumdes', BUMDESController::class);
+            Route::resource('linmas', LinmasController::class);
         });
 
         // old
@@ -73,7 +75,6 @@ Route::group(
         Route::resource('periode', PeriodeController::class);
         Route::resource('kades_periode', KadesPeriodeController::class);
 
-        Route::resource('linmas', LinmasController::class);
         Route::resource('lkd', LKDController::class);
         Route::resource('lpmd', LPMDController::class);
         Route::resource('perangkat_desa', PerangkatDesaController::class);
