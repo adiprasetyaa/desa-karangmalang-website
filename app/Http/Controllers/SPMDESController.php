@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class SPMDESController extends Controller
 {
+    public function view()
+    {
+        return view('admin.pemerintahan.lembaga_desa.spmdes.view');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -15,7 +20,20 @@ class SPMDESController extends Controller
     {
         //
         $spmdes = SPMDES::all();
-        return view('admin.pemerintahan.lembaga_desa.spmdes.index', compact('spmdes'));
+        
+        if ($spmdes->count() === 0) {
+            return response()->json([
+                'success' => false,
+                'status_code' => 404,
+                'message' => 'Data SPMDES tidak ditemukan'
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'status_code' => 200,
+            'data' => $spmdes
+        ]);
     }
 
     /**
@@ -36,7 +54,7 @@ class SPMDESController extends Controller
             'Jabatan' => 'required|string',
         ]); 
 
-        SPMDES::create($attributes);
+        $spmdes = SPMDES::create($attributes);
         
         Log::create([
             'ip_address' => $request->ip(),
@@ -49,7 +67,8 @@ class SPMDESController extends Controller
         return response()->json([
             'success' => true,
             'status_code' => 200,
-            'message' => 'Data SPMDES berhasil ditambahkan'
+            'message' => 'Data SPMDES berhasil ditambahkan',
+            'data' => $spmdes
         ]);
     }
 
@@ -59,6 +78,15 @@ class SPMDESController extends Controller
     public function show($id)
     {
         $spmdes = SPMDES::find($id);
+
+        if (!$spmdes) {
+            return response()->json([
+                'success' => false,
+                'status_code' => 404,
+                'message' => 'Data SPMDES tidak ditemukan'
+            ]);
+        }
+
         return response()->json([
             'success' => true,
             'status_code' => 200,
@@ -99,7 +127,8 @@ class SPMDESController extends Controller
         return response()->json([
             'success' => true,
             'status_code' => 200,
-            'message' => 'Data SPMDES berhasil diubah'
+            'message' => 'Data SPMDES berhasil diubah',
+            'data' => $spmdes
         ]);
     }
 

@@ -125,9 +125,9 @@
                         <li class="submenu-item  ">
                             <a href="{{ route('admin.lpmd.view') }}" class="submenu-link {{ request()->routeIs('admin.lpmd.view') ? 'active' : '' }}">LPMD</a>
                         </li>
-
+                        
                         <li class="submenu-item  ">
-                            <a href="ui-icons-dripicons.html" class="submenu-link">SPMDES</a>
+                            <a href="{{ route('admin.spmdes.view') }}" class="submenu-link {{ request()->routeIs('admin.spmdes.view') ? 'active' : '' }}">SPMDES</a>
                         </li>
                     </ul>
 

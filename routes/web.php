@@ -61,6 +61,7 @@ Route::group(
         Route::get('linmas', [LinmasController::class, 'view'])->name('linmas.view');
         Route::get('lkd', [LKDController::class, 'view'])->name('lkd.view');
         Route::get('lpmd', [LPMDController::class, 'view'])->name('lpmd.view');
+        Route::get('spmdes', [SPMDESController::class, 'view'])->name('spmdes.view');
         
         // -- Resourceful API --
 
@@ -71,6 +72,7 @@ Route::group(
             Route::resource('linmas', LinmasController::class);
             Route::resource('lkd', LKDController::class);
             Route::resource('lpmd', LPMDController::class);
+            Route::resource('spmdes', SPMDESController::class);
         });
 
         // old
@@ -80,7 +82,6 @@ Route::group(
         Route::resource('kades_periode', KadesPeriodeController::class);
 
         Route::resource('perangkat_desa', PerangkatDesaController::class);
-        Route::resource('spmdes', SPMDESController::class);
 
         Route::resource('post', PostController::class);
         Route::resource('category', CategoryController::class);
