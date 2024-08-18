@@ -35,7 +35,7 @@
                             <!-- Navbar Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="{{route('home')}}">Home</a></li>
                                     <li><a href="#">Profil Desa</a>
                                         <ul class="dropdown">
                                             <li><a href="shop.html">Tentang Kami</a></li>

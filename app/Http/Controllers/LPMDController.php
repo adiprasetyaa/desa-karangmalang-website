@@ -13,6 +13,14 @@ class LPMDController extends Controller
         return view('admin.pemerintahan.lembaga_desa.lpmd.view');
     }
 
+    public function guestView()
+    {
+        $lpmd = LPMD::all(); // Mengambil semua data BPD dari database
+
+        return view('guest.pemerintahan.lembaga_desa.lpmd.view', compact('lpmd')); // Mengirim data ke view
+    }
+
+
 
     /**
      * Display a listing of the resource.

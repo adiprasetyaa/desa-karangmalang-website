@@ -33,6 +33,14 @@ class BUMDESController extends Controller
         ]);
     }
 
+    public function guestView()
+    {
+        $bumdes = BUMDES::all(); // Mengambil semua data BPD dari database
+
+        return view('guest.pemerintahan.lembaga_desa.bumdes.view', compact('bumdes')); // Mengirim data ke view
+    }
+
+
     /**
      * Show the form for creating a new resource.
      */

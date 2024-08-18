@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Log;
+use App\Models\LPMD;
 use App\Models\SPMDES;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,14 @@ class SPMDESController extends Controller
     {
         return view('admin.pemerintahan.lembaga_desa.spmdes.view');
     }
+
+    public function guestView()
+    {
+        $spmdes = SPMDES::all(); // Mengambil semua data BPD dari database
+
+        return view('guest.pemerintahan.lembaga_desa.spmdes.view', compact('spmdes')); // Mengirim data ke view
+    }
+
 
     /**
      * Display a listing of the resource.

@@ -5,10 +5,10 @@
 <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 <!-- Title -->
-<title>Alazea - Gardening &amp; Landscaping HTML Template</title>
+<title>Desa Karangmalang</title>
 
 <!-- Favicon -->
-<link rel="icon" href="{{asset('assets/guest/img/core-img/favicon.ico')}}">
+<link rel="icon" href="{{asset('assets/guest')}}/static/images/logo/logo_karangmalang_1x1.png">
 
 <!-- Core Stylesheet -->
 <link rel="stylesheet" href="{{asset('assets/guest/css/style.css')}}">

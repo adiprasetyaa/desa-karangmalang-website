@@ -37,6 +37,14 @@ class BPDController extends Controller
         // return view('admin.ketua_rt.index', compact('ketuart'));
     }
 
+        // Method untuk guest mengakses halaman BPD
+    public function guestView()
+    {
+        $bpd = BPD::all(); // Mengambil semua data BPD dari database
+
+        return view('guest.pemerintahan.lembaga_desa.bpd.view', compact('bpd')); // Mengirim data ke view
+    }
+
     /**
      * Show the form for creating a new resource.
      */

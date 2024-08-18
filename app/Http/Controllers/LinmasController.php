@@ -12,6 +12,14 @@ class LinmasController extends Controller
         return view('admin.pemerintahan.lembaga_desa.linmas.view');
     }
 
+    public function guestView()
+    {
+        $linmas = Linmas::all(); // Mengambil semua data BPD dari database
+
+        return view('guest.pemerintahan.lembaga_desa.linmas.view', compact('linmas')); // Mengirim data ke view
+    }
+
+
     /**
      * Display a listing of the resource.
      */

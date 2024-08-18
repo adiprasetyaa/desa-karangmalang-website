@@ -20,12 +20,15 @@ use App\Http\Controllers\PerangkatDesaController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SPMDESController;
+use App\Models\Linmas;
+use App\Models\SPMDES;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/',[HomeController::class, 'home']);
+
+Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -41,6 +44,12 @@ Route::middleware('auth')->group(function () {
 Route::middleware('guest')->group(function () {
     Route::get('/admin', [LoginController::class, 'create'])->name('admin.login');
     Route::post('/admin', [LoginController::class, 'store']);
+    Route::get('/pemerintahan/lembaga-desa/bpd', [BPDController::class, 'guestView'])->name('guest.pemerintahan.lembaga_desa.bpd');
+    Route::get('/pemerintahan/lembaga-desa/bumdes', [BUMDESController::class, 'guestView'])->name('guest.pemerintahan.lembaga_desa.bumdes');
+    Route::get('/pemerintahan/lembaga-desa/linmas', [LinmasController::class, 'guestView'])->name('guest.pemerintahan.lembaga_desa.linmas');
+    Route::get('/pemerintahan/lembaga-desa/lkd', [LKDController::class, 'guestView'])->name('guest.pemerintahan.lembaga_desa.lkd');
+    Route::get('/pemerintahan/lembaga-desa/lpmd', [LPMDController::class, 'guestView'])->name('guest.pemerintahan.lembaga_desa.lpmd');
+    Route::get('/pemerintahan/lembaga-desa/spmdes', [SPMDESController::class, 'guestView'])->name('guest.pemerintahan.lembaga_desa.spmdes');
 });
 
 // Admin group prefix

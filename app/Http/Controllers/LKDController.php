@@ -13,6 +13,14 @@ class LKDController extends Controller
         return view('admin.pemerintahan.lembaga_desa.lkd.view');
     }
 
+    public function guestView()
+    {
+        $lkd = LKD::all(); // Mengambil semua data BPD dari database
+
+        return view('guest.pemerintahan.lembaga_desa.lkd.view', compact('lkd')); // Mengirim data ke view
+    }
+
+
     /**
      * Display a listing of the resource.
      */
