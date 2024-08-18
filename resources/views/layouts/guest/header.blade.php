@@ -47,6 +47,7 @@
                                         <ul class="dropdown">
                                             <li><a href="portfolio.html">Struktur Organisasi</a></li>
                                             <li><a href="single-portfolio.html">Perangkat Desa</a></li>
+                                            <li><a href="single-portfolio.html">Kepala Desa</a></li>
                                             <li><a href="single-portfolio.html">Lembaga Desa</a>
                                                 <ul class="dropdown">
                                                     <li><a href="{{ route('guest.pemerintahan.lembaga_desa.bpd') }}">BPD</a></li>
