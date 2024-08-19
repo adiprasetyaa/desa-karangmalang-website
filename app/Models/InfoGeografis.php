@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class InfoGeografis extends Model
 {
     use HasFactory;
+
+    protected $table = 'info_geografis';
+
+    public $guarded = [];
 }

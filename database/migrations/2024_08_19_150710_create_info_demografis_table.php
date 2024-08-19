@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('info_demografis', function (Blueprint $table) {
+        Schema::create('info_demografi', function (Blueprint $table) {
             $table->id();
+            $table->text('description');
             $table->timestamps();
         });
     }
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('info_demografis');
+        Schema::dropIfExists('info_demografi');
     }
 };
