@@ -20,6 +20,7 @@ use App\Http\Controllers\PerangkatDesaController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SPMDESController;
+use App\Http\Controllers\TentangKamiController;
 use App\Http\Controllers\VisiMisiController;
 use App\Models\Linmas;
 use App\Models\SPMDES;
@@ -97,7 +98,7 @@ Route::group(
         Route::resource('category', CategoryController::class);
 
         Route::resource('visimisi', VisiMisiController::class);
-        
+        Route::resource('tentang_kami', TentangKamiController::class);
     }
 );
 

@@ -14,10 +14,6 @@ class VisiMisiController extends Controller
     {
         $visiMisi = VisiMisi::find(1); // Mengambil post dengan id 1
         return view('admin.profil_desa.visi_misi.index', compact('visiMisi'));
-        // $visimisi = VisiMisi::all();
-        // return view('admin.profil_desa.visi_misi.index', [
-        //     'visimisi' => $visimisi
-        // ]);
     }
 
     public function create()
