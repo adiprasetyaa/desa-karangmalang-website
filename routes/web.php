@@ -12,6 +12,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KadesController;
 use App\Http\Controllers\KadesPeriodeController;
 use App\Http\Controllers\KetuaRTController;
+use App\Http\Controllers\LayananPublikController;
 use App\Http\Controllers\LinmasController;
 use App\Http\Controllers\LKDController;
 use App\Http\Controllers\LPMDController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\SPMDESController;
 use App\Http\Controllers\TentangKamiController;
 use App\Http\Controllers\VisiMisiController;
+use App\Models\LayananPublik;
 use App\Models\Linmas;
 use App\Models\SPMDES;
 
@@ -99,6 +101,8 @@ Route::group(
 
         Route::resource('visimisi', VisiMisiController::class);
         Route::resource('tentang_kami', TentangKamiController::class);
+
+        Route::resource('layanan_publik', LayananPublikController::class);
     }
 );
 

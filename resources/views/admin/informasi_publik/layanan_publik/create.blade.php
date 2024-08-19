@@ -15,14 +15,14 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Visi Misi</h3>
-                {{-- <p class="text-subtitle text-muted">Halaman untuk membuat visi misi</p> --}}
+                <h3>Layanan Publik</h3>
+                {{-- <p class="text-subtitle text-muted">Halaman untuk menambahkan Layanan Publik</p> --}}
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Visi Misi</li>
+                        <li class="breadcrumb-item active" aria-current="page">Layanan Publik</li>
                     </ol>
                 </nav>
             </div>
@@ -35,27 +35,32 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Visi dan Misi</h4>
+                <h4 class="card-title">Layanan Publik</h4>
             </div>
             <div class="card-body">
                 <form id="postForm" enctype="multipart/form-data">
                     @csrf
-                    
-                    <label for="visi">Visi:</label>
-                    <!-- Create the editor container -->
-                    <div id="editorVisi">
-                        <p>ini visi sementara</p>
-                    </div>
-                    <input type="hidden" name="visi" id="visi"><br><br>
 
-                    <label for="misi">Misi:</label>
-                    <!-- Create the editor container -->
-                    <div id="editorMisi">
-                        <p>ini misi sementara</p>
+                    <label for="nama_layanan">Nama Layanan:</label>
+                    <div class="form-group">
+                        <textarea class="form-control" id="nama_layanan" name="nama_layanan" rows="2" required></textarea>
                     </div>
-                    <input type="hidden" name="misi" id="misi"><br><br>
                     
-                    <button type="button" id="submitVisiMisiButton">Create VisiMisi</button>
+                    <label for="deskripsi_layanan">Deskripsi Layanan:</label>
+                    <!-- Create the editor container -->
+                    <div id="editorDeskripsiLayanan">
+                        <p>ini Deskripsi Layanan Sementara</p>
+                    </div>
+                    <input type="hidden" name="deskripsi_layanan" id="deskripsi_layanan"><br><br>
+
+                    <label for="persyaratan">Persyaratan:</label>
+                    <!-- Create the editor container -->
+                    <div id="editorPersyaratan">
+                        <p>ini Persyaratan sementara</p>
+                    </div>
+                    <input type="hidden" name="persyaratan" id="persyaratan"><br><br>
+                    
+                    <button type="button" id="submitLayananPublikButton">Tambah Layanan Publik</button>
                 </form>
                
             </div>
@@ -95,14 +100,14 @@ const toolbarOptions = [
   ['clean']                                         // remove formatting button
 ];
 
-const quillVisi = new Quill('#editorVisi', {
+const quillDeskripsiLayanan = new Quill('#editorDeskripsiLayanan', {
   modules: {
     toolbar: toolbarOptions
   },
   theme: 'snow'
 });
 
-const quillMisi = new Quill('#editorMisi', {
+const quillPersyaratan = new Quill('#editorPersyaratan', {
   modules: {
     toolbar: toolbarOptions
   },
@@ -110,17 +115,20 @@ const quillMisi = new Quill('#editorMisi', {
 });
 
 
-document.getElementById('submitVisiMisiButton').addEventListener('click', function() {
+document.getElementById('submitLayananPublikButton').addEventListener('click', function() {
     // axios post data with jquery
 
-    const contentVisi = quillVisi.getContents();
-    const contentMisi = quillMisi.getContents();
+    const contentDeskripsiLayanan = quillDeskripsiLayanan.getContents();
+    const contentPersyaratan = quillPersyaratan.getContents();
+
+    const namaLayanan = $('#nama_layanan').val();
 
     const formData = new FormData();
-    formData.append('visi', JSON.stringify(contentVisi));
-    formData.append('misi', JSON.stringify(contentMisi));
+    formData.append('nama_layanan', namaLayanan);
+    formData.append('deskripsi_layanan', JSON.stringify(contentDeskripsiLayanan));
+    formData.append('persyaratan', JSON.stringify(contentPersyaratan));
 
-    axios.post('/admin/visimisi', formData, {
+    axios.post('/admin/layanan_publik', formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
