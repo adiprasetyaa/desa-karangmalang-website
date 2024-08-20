@@ -2,6 +2,7 @@
 
 @section('css')
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('assets/admin')}}/extensions/choices.js/public/assets/styles/choices.css">
 @endsection
 
 @section('heading')
@@ -40,36 +41,46 @@
             <div class="card-body">
                 <form id="postForm" enctype="multipart/form-data">
                     @csrf
-                    
-                    <label for="title">Title:</label>
-                    <input type="text" id="title" name="title" required><br><br>
-
-                    <label for="content">Content:</label>
-                    <!-- Create the editor container -->
-                    <div id="editor">
-                        <p>Desa Karangmalang, Masaran, Sragen</p>
+                    <div class="form-group">
+                        <label for="title">Judul Postingan</label>
+                        <input id="title" type="text" name="title" class="form-control" required placeholder="Judul Postingan">
                     </div>
-                    <input type="hidden" name="content" id="content"><br><br>
-                    
-                    <label for="image">Image:</label>
-                    <input type="file" id="image" name="image"><br><br>
+                    <br>
+                    <div class="form-group">
+                        <label for="image">Gambar Utama</label>
+                        <input type="file" id="image" name="image" class="form-control">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="editor">Konten</label>
+                        <div id="editor">
+                            <p>Desa Karangmalang, Masaran, Sragen</p>
+                        </div>
+                    </div>
+                    <input type="hidden" name="content" id="content">
+                    <br>    
+                    <div class="form-group">
+                        <label for="categories">Kategori</label>
+                        <div class="col-md-6 mb-4">
+                            <select id="categories" name="category_ids[]" class="choices form-select multiple-remove" multiple="multiple">
+                                <optgroup label="Kategori">
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </optgroup>
+                            </select>
+                        </div>
+                        <!-- <div class="col-md-6 mb-4">
+                            <input type="text" class="form-control" id="new_category" placeholder="New Category">
+                            <button type="button" class="btn btn-primary" id="add_category_button">Add Category</button><br><br>
+                        </div> -->
+                    </div>
+            
+                
 
-                    <label for="thumbnail">Thumbnail:</label>
-                    <input type="file" id="thumbnail" name="thumbnail"><br><br>
+                  
 
-                    <label for="categories">Categories:</label>
-                    <select id="categories" name="category_ids[]" multiple>
-                        @foreach($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endforeach
-                    </select><br><br>
-
-                    <input type="text" id="new_category" placeholder="New Category">
-                    <button type="button" id="add_category_button">Add Category</button><br><br>
-
-                    <p>If no categories are selected, the post will be assigned to the "Default" category.</p>
-
-                    <button type="button" id="submitPostButton">Create Post</button>
+                    <button type="button" class="btn btn-primary" id="submitPostButton">Create Post</button>
                 </form>
                
             </div>
@@ -80,6 +91,8 @@
 @section('javascript')
 <script src="{{ asset('assets/admin')}}/extensions/jquery/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+<script src="{{ asset('assets/admin')}}/extensions/choices.js/public/assets/scripts/choices.js"></script>
+<script src="{{ asset('assets/admin')}}/static/js/pages/form-element-select.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <!-- <script src="{{ asset('assets/admin')}}/static/js/pages/quill.js"></script> -->
