@@ -71,10 +71,11 @@
                                         <a href="{{ route('admin.post.edit', $post->id) }}" class="btn btn-outline-primary" data-bs-target="#editForm">
                                             Edit  
                                         </a>
-                                        <a href="{{ route('admin.post.edit', $post->id) }}" type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
-                                            data-bs-target="#deleteModal" data-bs-idketua="{{ $post->id }}">
+
+                                        <button type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal" data-bs-idpost="{{ $post->id }}">
                                             Hapus
-                                        </a>
+                                        </button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -87,7 +88,7 @@
     </section>
     <!-- Basic Tables end -->
 
-
+@include('admin.post.modal.delete')
 @endsection
 
 @section('javascript')
@@ -110,5 +111,40 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+<script>
+    const destroyButton = document.getElementById('destroyButton');
+    const deleteModal = document.getElementById('deleteModal');
 
+    deleteModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget
+        const idpost = button.getAttribute('data-bs-idpost');
+
+        destroyButton.setAttribute('data-bs-idpost', idpost);
+        console.log('del:', idpost);
+    });
+
+    destroyButton.addEventListener('click', function (event) {
+        const idpost = this.getAttribute('data-bs-idpost');
+        const url = `/admin/post/${idpost}`;
+
+        $.ajax(url, {
+            method: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}',
+                _method: 'DELETE'
+            },
+            success: function (response) {
+                showToast('success', response.message);
+                // timeout 2
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000); 
+                },
+            error: function (error) {
+                console.error('Error:', error);
+                showToast('error', "Gagal menghapus data");
+            }
+        });
+    });
+</script>
 @endsection

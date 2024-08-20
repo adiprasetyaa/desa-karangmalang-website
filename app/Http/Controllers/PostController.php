@@ -153,6 +153,13 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $post = Post::find($id);
+        $post->delete();
+
+        return response()->json([
+            'success' => true,
+            'status_code' => 200,
+            'message' => 'Berhasil menghapus postingan'
+        ]);
     }
 }
