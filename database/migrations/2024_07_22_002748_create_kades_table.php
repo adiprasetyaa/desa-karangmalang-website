@@ -13,10 +13,15 @@ return new class extends Migration
     {
         Schema::create('kades', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('people_id')->constrained('people')->onDelete('cascade');
-            $table->string('photo')->nullable();
+            $table->string('name');
             $table->string('visi')->nullable();
             $table->string('misi')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('photo')->nullable();
+            $table->date('period_start_at');
+            $table->date('period_end_at');
             $table->timestamps();
         });
     }
