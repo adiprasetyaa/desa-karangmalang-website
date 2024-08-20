@@ -38,6 +38,16 @@
                 <h4 class="card-title">{{ $post->title }}</h4>
             </div>
             <div class="card-body">
+                <div class="form-group">
+                    <label for="image">Gambar</label>
+                    @if($post->image)
+                    <br>
+                    <img src="{{ asset('storage/'.$post->image) }}" alt="" class="img-fluid" style="width: 500px; height: auto;">
+                    <br>
+                    @endif
+                </div>
+                <br>
+                <label for="editor">Konten</label>
                 <div class="hide" hidden>
                     <div id="editor" hidden>
 

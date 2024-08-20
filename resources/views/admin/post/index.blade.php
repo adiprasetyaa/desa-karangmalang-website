@@ -68,13 +68,13 @@
                                         <a href="{{ route('admin.post.show', $post->id) }}" class="btn btn-outline-primary">
                                             Lihat
                                         </a>
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-idketua="{{ $post->id }}" data-bs-target="#editForm">
-                                            Edit (Belum berfungsi)
-                                        </button>
-                                        <button type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
+                                        <a href="{{ route('admin.post.edit', $post->id) }}" class="btn btn-outline-primary" data-bs-target="#editForm">
+                                            Edit  
+                                        </a>
+                                        <a href="{{ route('admin.post.edit', $post->id) }}" type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
                                             data-bs-target="#deleteModal" data-bs-idketua="{{ $post->id }}">
-                                            Hapus (Belum berfungsi)
-                                        </button>
+                                            Hapus
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

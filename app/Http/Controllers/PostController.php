@@ -47,12 +47,10 @@ class PostController extends Controller
         $attributes['slug'] = $attributes['slug'] ?? $attributes['title'];
 
         if ($request->hasFile('image')) {
-            $attributes['image'] = $request->file('image')->store('images/posts');
+            $attributes['image'] = $request->file('image')->store('images/posts', 'public');
         }
 
-        if ($request->hasFile('thumbnail')) {
-            $attributes['thumbnail'] = $request->file('thumbnail')->store('images/posts/thumbnails');
-        }
+    
 
         $post = Post::create($attributes);
 
@@ -70,8 +68,9 @@ class PostController extends Controller
 
         // return json
         return response()->json([
-            'message' => 'Post created successfully',
-            'data' => $attributes
+            'message' => 'Berhasil membuat postingan',
+            'status_code' => 200,
+            'data' => $post
         ]);
     }
 
@@ -106,7 +105,47 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $attributes = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'slug' => 'string|max:255|unique:posts',
+        ]);
+
+        $attributes['user_id'] = auth()->id();
+        $attributes['slug'] = $attributes['slug'] ?? $attributes['title'];
+
+        if ($request->hasFile('image')) {
+            $attributes['image'] = $request->file('image')->store('images/posts', 'public');
+        }
+
+        // if ($request->hasFile('thumbnail')) {
+        //     $attributes['thumbnail'] = $request->file('thumbnail')->store('images/posts/thumbnails');
+        // }
+
+        $post = Post::find($id);
+        $post->update($attributes);
+
+        // default category
+        $category = Category::first();
+
+        // attach category to pivot table
+        $post->categories()->attach($category);
+        
+        // if fail
+        if(!$post) {
+            dd('fail');
+            return redirect()->back()->with('error', 'Failed to create post');
+        }
+
+        // return json
+        return response()->json([
+            'success' => true,
+            'status_code' => 200,
+            'message' => 'Berhasil menyunting postingan',
+            'data' => $post 
+        ]);
     }
 
     /**

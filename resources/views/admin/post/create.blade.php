@@ -138,15 +138,16 @@ document.getElementById('submitPostButton').addEventListener('click', function()
     const formData = new FormData();
     formData.append('title', title);
     formData.append('content', JSON.stringify(content));
-    // if image exists
+    // selected categories
+
+
+
+
 
     if($('#image')[0].files[0] ) {
         formData.append('image', $('#image')[0].files[0]);
     }
 
-    if($('#thumbnail')[0].files[0] ) {
-        formData.append('thumbnail', $('#thumbnail')[0].files[0]);
-    }
     formData.append('category_ids', $('#categories').val());
 
     axios.post('/admin/post', formData, {
@@ -154,9 +155,14 @@ document.getElementById('submitPostButton').addEventListener('click', function()
             'Content-Type': 'multipart/form-data'
         }
     }).then(response => {
+        showToast('success', response.data.message);
         console.log(response);
+
+        // if success, redirect to post index
+        window.location.href = '/admin/post';
     }).catch(error => {
         console.log(error);
+        showToast('error', error.response.data.message);
     });
 
 });
