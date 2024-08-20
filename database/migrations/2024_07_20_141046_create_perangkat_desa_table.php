@@ -20,9 +20,11 @@ return new class extends Migration
             $table->string('NoSK');
             $table->date('PeriodeStart'); // Start date of the term
             $table->date('PeriodeEnd'); // End date of the term
+            $table->string('image')->nullable(); // Image field for the photo
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.

@@ -203,72 +203,31 @@
             <div class="row">
 
                 <!-- Single Product Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-product-area mb-50 wow fadeInUp" data-wow-delay="100ms">
-                        <!-- Product Image -->
-                        <div class="d-flex justify-content-center align-items-center" style="height: 480px;">
-                            <img src="{{ asset('assets/guest') }}/static/images/staff/atya.jpeg" alt="" style="height: 480px; width:270px;object-fit: cover;">
-                        </div>
-                        <!-- Product Info -->
-                        <div class="product-info mt-15 text-center">
-                            <a href="shop-details.html">
-                                <p>Adi Prasetya</p>
-                            </a>
-                            <h6>Presiden RI</h6>
+                @foreach($perangkat_desa->take(4) as $perangkat)
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="single-product-area mb-50 wow fadeInUp" data-wow-delay="100ms">
+                            <!-- Product Image -->
+                            @if($perangkat->image)
+                                <div class="d-flex justify-content-center align-items-center" style="height: 480px;">
+                                    <img src="{{ asset('images/perangkat_desa/' . $perangkat->image) }}" alt="{{ $perangkat->Nama }}" style="height: 480px; width:270px; object-fit: cover;">
+                                </div>
+                            @else
+                                <!-- Product Image -->
+                                <div class="d-flex justify-content-center align-items-center" style="height: 480px;">
+                                    <img src="{{ asset('assets/guest') }}/static/images/staff/dummy_profile.png" alt="{{ $perangkat->Nama }}" style="height: 480px; width:270px; object-fit: cover;">
+                                </div>
+                            @endif
+                            <!-- Product Info -->
+                            <div class="product-info mt-15 text-center">
+                                <a href="#">
+                                    <p>{{ $perangkat->Nama }}</p>
+                                </a>
+                                <h6>{{ $perangkat->Jabatan }}</h6>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
 
-                <!-- Single Product Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-product-area mb-50 wow fadeInUp" data-wow-delay="100ms">
-                        <!-- Product Image -->
-                        <div class="d-flex justify-content-center align-items-center" style="height: 480px;">
-                            <img src="{{ asset('assets/guest') }}/static/images/staff/atya.jpeg" alt="" style="height: 480px; width:270px;object-fit: cover">
-                        </div>
-                        <!-- Product Info -->
-                        <div class="product-info mt-15 text-center">
-                            <a href="shop-details.html">
-                                <p>Adi Prasetya</p>
-                            </a>
-                            <h6>Presiden RI</h6>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Product Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-product-area mb-50 wow fadeInUp" data-wow-delay="100ms">
-                        <!-- Product Image -->
-                        <div class="d-flex justify-content-center align-items-center" style="height: 480px;">
-                            <img src="{{ asset('assets/guest') }}/static/images/staff/atya.jpeg" alt="" style="height: 480px; width:270px;object-fit: cover">
-                        </div>
-                        <!-- Product Info -->
-                        <div class="product-info mt-15 text-center">
-                            <a href="shop-details.html">
-                                <p>Adi Prasetya</p>
-                            </a>
-                            <h6>Presiden RI</h6>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Product Area -->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-product-area mb-50 wow fadeInUp" data-wow-delay="100ms">
-                        <!-- Product Image -->
-                        <div class="d-flex justify-content-center align-items-center" style="height: 480px;">
-                            <img src="{{ asset('assets/guest') }}/static/images/staff/atya.jpeg" alt="" style="height: 480px; width:270px;object-fit: cover">
-                        </div>
-                        <!-- Product Info -->
-                        <div class="product-info mt-15 text-center">
-                            <a href="shop-details.html">
-                                <p>Adi Prasetya</p>
-                            </a>
-                            <h6>Presiden RI</h6>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="col-12 text-center">
                     <a href="#" class="btn alazea-btn">View All</a>
