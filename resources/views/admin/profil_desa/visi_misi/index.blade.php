@@ -40,6 +40,9 @@
             <div class="card-header">
                 <h4 class="card-title">Visi dan Misi</h4>
             </div>
+            <div class="card-header">
+                <h6 class="card-title">Visi</h6>
+            </div>
             <div class="card-body">
                 <div class="hide" hidden>
                     <div id="editorVisi" hidden>
@@ -48,6 +51,9 @@
                 </div>
                 <div id="semantichtmlVisi" class="ql-editor">
                 </div>
+            </div>
+            <div class="card-header">
+                <h6 class="card-title">Misi</h6>
             </div>
             <div class="card-body">
                 <div class="hide" hidden>
@@ -58,9 +64,9 @@
                 <div id="semantichtmlMisi" class="ql-editor">
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body d-flex justify-content-end me-3 mb-3">
                  <!-- Add the Edit Button -->
-                 <a href="{{ route('admin.visimisi.edit', $visiMisi->id) }}" class="btn btn-primary">Edit</a>
+                 <a href="{{ route('admin.visimisi.edit', $visiMisi->id) }}" class="btn btn-primary" style="width: 200px;">Edit Data</a>
             </div>
         </div>
     </section>

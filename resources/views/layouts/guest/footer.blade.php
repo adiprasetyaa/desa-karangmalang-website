@@ -22,16 +22,16 @@
                             </div>
                             <nav class="widget-nav">
                                 <ul>
-                                    <li><a href="#">Tentang Kami</a></li>
-                                    <li><a href="#">Visi Misi</a></li>
-                                    <li><a href="#">Geografis Desa</a></li>
-                                    <li><a href="#">Demografi Desa</a></li>
-                                    <li><a href="#">Struktur Organisasi</a></li>
-                                    <li><a href="#">Perangkat Desa</a></li>
-                                    <li><a href="#">Lembaga Desa</a></li>
-                                    <li><a href="#">Berita Desa</a></li>
-                                    <li><a href="#">Pengumuman</a></li>
-                                    <li><a href="#">Galeri</a></li>
+                                    <li><a href="{{ route('guest.profil_desa.tentang_kami') }}">Tentang Kami</a></li>
+                                    <li><a href="{{ route('guest.profil_desa.visi_misi') }}">Visi Misi</a></li>
+                                    <li><a href="{{ route('guest.profil_desa.geografis_desa') }}">Geografis Desa</a></li>
+                                    <li><a href="{{ route('guest.profil_desa.demografi_desa') }}">Demografi Desa</a></li>
+                                    <li><a href="{{ route('guest.pemerintahan.pemerintah_desa') }}">Struktur Organisasi</a></li>
+                                    <li><a href="{{ route('guest.pemerintahan.pemerintah_desa') }}">Perangkat Desa</a></li>
+                                    <li><a href="{{ route('guest.pemerintahan.lembaga_desa.bpd') }}">Lembaga Desa</a></li>
+                                    <li><a href="{{route('guest.informasi_publik.artikel.index')}}">Artikel</a></li>
+                                    <li><a href="{{ route('guest.informasi_publik.layanan_publik') }}">Layanan Publik</a></li>
+                                    <li><a href="{{ route('guest.informasi_publik.galeri') }}">Galeri</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -46,7 +46,7 @@
 
                             <div class="contact-information">
                                 <p><span>Alamat: </span> Jalan Solo-Sragen, KM 14, Desa Karangmalang, Kec. Masaran Kabupaten Sragen, Jawa Tengah</p>
-                                <p><span>Telepon: </span> +1 234 122 122</p>
+                                <p><span>Telepon: </span> 021-201-313-414</p>
                                 <p><span>Email: </span>desakarangmalangmasaran@gmail.com</p>
                                 <p><span>Waktu Pelayanan: </span></p>
                                 <p>08:00 - 15:00 (Senin - Kamis)</p>
@@ -71,7 +71,7 @@
                     <div class="col-12 col-md-6 col-lg-12">
                         <div class="copywrite-text">
                             <p>&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made by <a href="https://www.instagram.com/jejakkarangmalang" target="_blank">KKN UNS KELOMPOK 185</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="https://www.instagram.com/jejakkarangmalang" target="_blank">KKN UNS KELOMPOK 185</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 </p>
                         </div>

@@ -78,8 +78,7 @@
 
                                 </div>
                             </div>
-                            <div id="semantichtmlMisi" class="ql-editor">
-                            </div>
+                            <div id="semantichtmlMisi" class="ql-editor"></div>
                         </div>
                     </div>
                 </div>

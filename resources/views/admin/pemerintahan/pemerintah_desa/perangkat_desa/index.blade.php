@@ -17,14 +17,14 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Informasi Publik</h3>
-                {{-- <p class="text-subtitle text-muted">Layanan Publik</p> --}}
+                <h3>Perangkat Desa</h3>
+                {{-- <p class="text-subtitle text-muted">Perangkat Desa</p> --}}
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Layanan Publik</li>
+                        <li class="breadcrumb-item active" aria-current="page">Perangkat Desa</li>
                     </ol>
                 </nav>
             </div>
@@ -41,7 +41,7 @@
                 {{-- div with flex justify --}}
                 <div class="d-flex justify-content-between">
                     <h5 class="card-title">
-                        Perangkat Desa
+                        Data Perangkat Desa
                     </h5>
                     <a href="{{ route('admin.perangkat_desa.create') }}" class="btn btn-primary" >
                         Tambah Perangkat Desa
@@ -65,9 +65,6 @@
                                     <td>{{ $perangkat->Nama }}</td>
                                     <td>{{ $perangkat->Jabatan}}</td>
                                     <td>
-                                        <a href="{{ route('admin.perangkat_desa.show', $perangkat->id) }}" class="btn btn-outline-primary">
-                                            Lihat
-                                        </a>
                                         <a href="{{ route('admin.perangkat_desa.edit', $perangkat->id) }}" class="btn btn-outline-primary">
                                             Edit
                                         </a>

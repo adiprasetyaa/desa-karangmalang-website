@@ -5,7 +5,8 @@
 <head>
 
 @include('layouts.guest.css')
-
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 </head>
 
 <body>
@@ -125,62 +126,44 @@
 
             <div class="row justify-content-center">
 
-                <!-- Single Blog Post Area -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-blog-post mb-100">
-                        <div class="post-thumbnail mb-30">
-                            <a href="single-post.html"><img src="{{asset('assets/guest')}}/img/bg-img/6.jpg" alt=""></a>
-                        </div>
-                        <div class="post-content">
-                            <a href="single-post.html" class="post-title">
-                                <h5>Garden designers across the country forecast ideas shaping the gardening world in 2018</h5>
-                            </a>
-                            <div class="post-meta">
-                                <a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> 20 Jun 2018</a>
-                                <a href="#"><i class="fa fa-user" aria-hidden="true"></i> Alan Jackson</a>
-                            </div>
-                            <p class="post-excerpt">Integer luctus diam ac scerisque consectetur. Vimus ottawas nec lacus sit amet. Aenean interdus mid vitae.</p>
-                        </div>
-                    </div>
+            @foreach($artikels as $index=> $artikel)
+                            <!-- Single Blog Post Area -->
+                            <div class="col-12 col-lg-6">
+                                <div class="single-blog-post mb-50">
+                                    <div class="post-thumbnail mb-30">
+                                        <a href="{{ route('guest.informasi_publik.artikel.show', $artikel->id) }}">
+                                            <img src="{{ Storage::url($artikel->image) }}" alt="{{ $artikel->title }}">
+                                        </a>
+                                    </div>
+                                    <div class="post-content">
+                                        <a href="{{ route('guest.informasi_publik.artikel.show', $artikel->id) }}" class="post-title">
+                                            <h5>{{ $artikel->title }}</h5>
+                                        </a>
+                                        <div class="post-meta">
+                                            <a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ $artikel->created_at->format('d M Y') }}</a>
+                                            <a href="#"><i class="fa fa-user" aria-hidden="true"></i>{{ $artikel->user->name }}</a>
+                                        </div>
+                                        <!-- <p class="post-excerpt">{{ Str::limit($artikel->content, 100) }}</p> -->
+                                        <!-- <p class="post-excerpt">
+                                            <div class="hide" hidden>
+                                                <div id="editor_{{ $loop->index }}" hidden></div>
+                                            </div>
+                                            <div id="semantichtml_{{ $loop->index }}" class="ql-editor"></div>
+                                        </p> -->
+                                                        <!-- Hidden container for Quill content -->
+                <div class="hide" hidden>
+                    <div id="editor_{{ $loop->index }}" hidden>{!! $artikel->content !!}</div>
                 </div>
-
-                <!-- Single Blog Post Area -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-blog-post mb-100">
-                        <div class="post-thumbnail mb-30">
-                            <a href="single-post.html"><img src="{{asset('assets/guest')}}/img/bg-img/7.jpg" alt=""></a>
-                        </div>
-                        <div class="post-content">
-                            <a href="single-post.html" class="post-title">
-                                <h5>2018 Midwest Tree and Shrub Conference: Resilient Plants for a Lasting Landscape</h5>
-                            </a>
-                            <div class="post-meta">
-                                <a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> 20 Jun 2018</a>
-                                <a href="#"><i class="fa fa-user" aria-hidden="true"></i> Christina Aguilera</a>
+                <!-- Visible container for truncated content -->
+                <p class="post-excerpt">
+                    <div id="semantichtml_{{ $loop->index }}" class="ql-editor"></div>
+                </p>
+                                        <!-- <div id="editorContent"></div> -->
+                                        <!-- <div id="editorContent_{{ $index }}"></div> -->
+                                    </div>
+                                </div>
                             </div>
-                            <p class="post-excerpt">Integer luctus diam ac scerisque consectetur. Vimus ottawas nec lacus sit amet. Aenean interdus mid vitae.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single Blog Post Area -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-blog-post mb-100">
-                        <div class="post-thumbnail mb-30">
-                            <a href="single-post.html"><img src="{{asset('assets/guest')}}/img/bg-img/8.jpg" alt=""></a>
-                        </div>
-                        <div class="post-content">
-                            <a href="single-post.html" class="post-title">
-                                <h5>The summer coming up, it’s time for both us and the flowers to soak up the sunshine</h5>
-                            </a>
-                            <div class="post-meta">
-                                <a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> 19 Jun 2018</a>
-                                <a href="#"><i class="fa fa-user" aria-hidden="true"></i> Mason Jenkins</a>
-                            </div>
-                            <p class="post-excerpt">Integer luctus diam ac scerisque consectetur. Vimus ottawas nec lacus sit amet. Aenean interdus mid vitae.</p>
-                        </div>
-                    </div>
-                </div>
+                        @endforeach
 
             </div>
         </div>
@@ -279,6 +262,47 @@
     <!-- ##### Footer Area End ##### -->
 
     @include('layouts.guest.js')
+
+    <script>
+    @foreach($artikels as $artikel)
+        const Quill_{{ $loop->index }} = new Quill('#editor_{{ $loop->index }}', {
+            theme: 'snow',
+            readOnly: true,  // Set to read-only mode
+        });
+
+        // Parse the Quill Delta (or HTML) content
+        const artikel_{{ $loop->index }} = {!! $artikel->content !!}; 
+        Quill_{{ $loop->index }}.setContents(artikel_{{ $loop->index }});
+
+
+        // Update HTML content with Quill's semantic HTML
+        $('#semantichtml_{{ $loop->index }}').html(Quill_{{ $loop->index }}.root.innerHTML);
+
+    @endforeach
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        @foreach($artikels as $index => $artikel)
+            // Initialize Quill editor in read-only mode
+            const Quill_{{ $loop->index }} = new Quill('#editor_{{ $loop->index }}', {
+                theme: 'snow',
+                readOnly: true,
+            });
+
+            // Set content for Quill editor
+            const artikelContent_{{ $loop->index }} = document.getElementById('editor_{{ $loop->index }}').innerHTML;
+            Quill_{{ $loop->index }}.root.innerHTML = artikelContent_{{ $loop->index }};
+
+            // Extract text content and truncate
+            const textContent_{{ $loop->index }} = Quill_{{ $loop->index }}.root.innerText;
+            let truncatedContent_{{ $loop->index }} = textContent_{{ $loop->index }}.length > 100 ? textContent_{{ $loop->index }}.substring(0, 100) + '...' : textContent_{{ $loop->index }};
+
+            // Update the HTML container with truncated content
+            document.getElementById('semantichtml_{{ $loop->index }}').innerHTML = truncatedContent_{{ $loop->index }};
+        @endforeach
+    });
+    </script>
 </body>
 
 </html>

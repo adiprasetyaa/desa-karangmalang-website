@@ -2,6 +2,7 @@
 
 @section('css')
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
 @endsection
 
 @section('heading')
@@ -34,24 +35,30 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Perangkat Desa</h4>
+                <h4 class="card-title">Detail Perangkat Desa</h4>
             </div>
             <div class="card-body">
                 <form id="postForm">
                     @csrf
                     @method('PUT')
 
-                    <label for="nama">Nama:</label>
-                    <input type="text" id="nama" name="nama" value="{{ old('Nama', $perangkat_desa->Nama) }}" required><br><br>
+                    <div class="form-group">
+                        <label for="nama">Nama:</label>
+                        <input type="text" id="nama" name="nama" class="form-control" value="{{ old('Nama', $perangkat_desa->Nama) }}" required>
+                    </div>
 
-                    <label for="jabatan">Jabatan:</label>
-                    <input type="text" id="jabatan" name="jabatan" value="{{ old('Jabatan', $perangkat_desa->Jabatan) }}" required><br><br>
+                    <div class="form-group">
+                        <label for="jabatan">Jabatan:</label>
+                        <input type="text" id="jabatan" name="jabatan" class="form-control" value="{{ old('Jabatan', $perangkat_desa->Jabatan) }}" required>
+                    </div>
 
-                    <label for="image">Foto Perangkat Desa:</label><br>
-                    @if ($perangkat_desa->image)
-                        <img src="{{ Storage::url($perangkat_desa->image) }}" alt="Perangkat Desa Image" class="img-fluid" style="max-width: 100%; height: auto;"><br><br>
-                    @endif
-                    <input type="file" id="image" name="image"><br><br>
+                    <div class="form-group">
+                        @if ($perangkat_desa->image)
+                            <img src="{{ Storage::url($perangkat_desa->image) }}" alt="Perangkat Desa Image" class="img-fluid" style="max-width: 100%; height: auto;"><br><br>
+                        @endif
+                        <label for="image">Unggah Foto:</label>
+                        <input id="image" name="image" class="form-control" type="file">
+                    </div>
                     
                     <div class="form-group mt-3">
                         <button type="button" class="btn btn-primary" id="updateButton">Edit Data</button>
@@ -64,13 +71,11 @@
 
 @section('javascript')
 <script src="{{ asset('assets/admin')}}/extensions/jquery/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script>
 document.getElementById('updateButton').addEventListener('click', function() {
-    // axios post data with jquery
-
     const nama = $('#nama').val();
     const jabatan = $('#jabatan').val();
 
@@ -78,26 +83,35 @@ document.getElementById('updateButton').addEventListener('click', function() {
     formData.append('Nama', nama);
     formData.append('Jabatan', jabatan);
     
-    if($('#image')[0].files[0] ) {
+    if($('#image')[0].files[0]) {
         formData.append('image', $('#image')[0].files[0]);
     }
     
     formData.append('_method', 'PATCH');
 
-    const id = "{{ $perangkat_desa->id }}"; // ID VisiMisi yang sedang diedit
+    const id = "{{ $perangkat_desa->id }}"; // ID Perangkat Desa yang sedang diedit
 
     axios.post(`/admin/perangkat_desa/${id}`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
     }).then(response => {
-        console.log(response);
+        Swal.fire({
+            title: 'Sukses!',
+            text: 'Data Perangkat Desa berhasil diperbarui.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        }).then(() => {
+            window.location.reload(); // Memuat ulang halaman
+        });
     }).catch(error => {
-        console.log(error);
+        Swal.fire({
+            title: 'Gagal!',
+            text: 'Terjadi kesalahan saat memperbarui data Perangkat Desa.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
     });
-
 });
 </script>
-
-
 @endsection

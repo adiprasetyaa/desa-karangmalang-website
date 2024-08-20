@@ -40,8 +40,8 @@
                                         <ul class="dropdown">
                                             <li><a href="{{ route('guest.profil_desa.tentang_kami') }}">Tentang Kami</a></li>
                                             <li><a href="{{ route('guest.profil_desa.visi_misi') }}">Visi & Misi</a></li>
-                                            <li><a href="shop-details.html">Geografis Desa</a></li>
-                                            <li><a href="shop-details.html">Demografi Desa</a></li>
+                                            <li><a href="{{ route('guest.profil_desa.geografis_desa') }}">Geografis Desa</a></li>
+                                            <li><a href="{{ route('guest.profil_desa.demografi_desa') }}">Demografi Desa</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="portfolio.html">Pemerintahan</a>
@@ -62,9 +62,7 @@
                                     <li><a href="blog.html">Informasi Publik</a>
                                         <ul class="dropdown">
                                             <li><a href="{{ route('guest.informasi_publik.layanan_publik') }}">Layanan Publik</a></li>
-                                            <li><a href="blog.html">Berita Desa</a></li>
-                                            <li><a href="single-post.html">Pengumuman</a></li>
-                                            <li><a href="single-post.html">Agenda Kegiatan</a></li>
+                                            <li><a href="{{route('guest.informasi_publik.artikel.index')}}">Artikel</a></li>
                                             <li><a href="{{ route('guest.informasi_publik.galeri') }}">Galeri</a></li>
                                         </ul>
                                     </li>

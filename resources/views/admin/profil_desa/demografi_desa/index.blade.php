@@ -18,14 +18,14 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Info Demografi</h3>
-                {{-- <p class="text-subtitle text-muted">Info Demografi</p> --}}
+                <h3>Demografi Desa</h3>
+                {{-- <p class="text-subtitle text-muted">Demografi Desa</p> --}}
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Info Demografi</li>
+                        <li class="breadcrumb-item active" aria-current="page">Demografi Desa</li>
                     </ol>
                 </nav>
             </div>
@@ -38,10 +38,7 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Info Demografi</h4>
-            </div>
-            <div class="card-body">
-                <h5>ID: {{ $demografi_desa->id }}</h5>
+                <h4 class="card-title">Deskripsi Demografi Desa</h4>
             </div>
             <div class="card-body">
                 <div class="hide" hidden>
@@ -52,9 +49,9 @@
                 <div id="semantichtml" class="ql-editor">
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body d-flex justify-content-end me-3 mb-3">
                  <!-- Add the Edit Button -->
-                 <a href="{{ route('admin.demografi_desa.edit', $demografi_desa->id) }}" class="btn btn-primary">Edit</a>
+                 <a href="{{ route('admin.demografi_desa.edit', $demografi_desa->id) }}" class="btn btn-primary" style="width: 200px;">Edit Data</a>
             </div>
         </div>
     </section>

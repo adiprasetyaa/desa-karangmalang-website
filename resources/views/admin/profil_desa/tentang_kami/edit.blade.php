@@ -2,6 +2,8 @@
 
 @section('css')
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
+<!-- Tambahkan SweetAlert CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 @endsection
 
 @section('heading')
@@ -15,8 +17,7 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Tentang Kami</h3>
-                {{-- <p class="text-subtitle text-muted">Halaman untuk Edit tentang kami</p> --}}
+                <h3>Detail Tentang Kami</h3>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -53,16 +54,14 @@
         </div>
     </div>
 </section>
-
-
 @endsection
 
 @section('javascript')
 <script src="{{ asset('assets/admin')}}/extensions/jquery/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
-<!-- <script src="{{ asset('assets/admin')}}/static/js/pages/quill.js"></script> -->
+<!-- Tambahkan SweetAlert JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
 <script>
 $('#submitButton').click(function() {
@@ -70,11 +69,18 @@ $('#submitButton').click(function() {
         description: $('#description').val(),
     })
     .then(function(response) {
-        alert(response.data.message);
-        // Optionally redirect or clear form
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: response.data.message,
+        });
     })
     .catch(function(error) {
-        alert('Failed to update Tentang Kami');
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: 'Failed to update Tentang Kami',
+        });
     });
 });
 </script>

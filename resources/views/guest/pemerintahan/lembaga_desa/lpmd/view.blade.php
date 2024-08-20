@@ -120,14 +120,14 @@
                             </div>
                             <!-- Tags -->
                             <ol class="popular-tags d-flex flex-wrap">
-                                <li><a href="#">HOME</a></li>
-                                <li><a href="#">BERITA</a></li>
-                                <li><a href="#">GALERI</a></li>
-                                <li><a href="#">TENTANG DESA</a></li>
-                                <li><a href="#">VISI MISI</a></li>
-                                <li><a href="#">LEMBAGA DESA</a></li>
-                                <li><a href="#">LAYANAN PUBLIK</a></li>
-                                <li><a href="#">PERANGKAT DESA</a></li>
+                                <li><a href="{{route('home')}}">HOME</a></li>
+                                <li><a href="{{route('guest.informasi_publik.artikel.index')}}">ARTIKEL</a></li>
+                                <li><a href="{{ route('guest.informasi_publik.galeri') }}">GALERI</a></li>
+                                <li><a href="{{ route('guest.profil_desa.tentang_kami') }}">TENTANG DESA</a></li>
+                                <li><a href="{{ route('guest.profil_desa.visi_misi') }}">VISI MISI</a></li>
+                                <li><a href="{{ route('guest.pemerintahan.lembaga_desa.bpd') }}">LEMBAGA DESA</a></li>
+                                <li><a href="{{ route('guest.informasi_publik.layanan_publik') }}">LAYANAN PUBLIK</a></li>
+                                <li><a href="{{ route('guest.pemerintahan.pemerintah_desa') }}">PEMERINTAH DESA</a></li>
                             </ol>
                     </div>
                 </div>

@@ -38,12 +38,14 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Deskripsi</h4>
+                <h4 class="card-title">Deskripsi Tentang Kami</h4>
             </div>
             <div class="card-body">
                 <p>{{ $tentangkami->description }}<p>
+            </div>
+            <div class="card-body d-flex justify-content-end me-3 mb-3">
                  <!-- Add the Edit Button -->
-                 <a href="{{ route('admin.tentang_kami.edit', $tentangkami->id) }}" class="btn btn-primary">Edit</a>
+                 <a href="{{ route('admin.tentang_kami.edit', $tentangkami->id) }}" class="btn btn-primary" style="width: 200px;">Edit Data</a>
             </div>
         </div>
     </section>

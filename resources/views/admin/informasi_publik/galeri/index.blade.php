@@ -17,14 +17,14 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Informasi Publik</h3>
-                {{-- <p class="text-subtitle text-muted">Layanan Publik</p> --}}
+                <h3>Galeri Desa</h3>
+                {{-- <p class="text-subtitle text-muted">Galeri</p> --}}
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Layanan Publik</li>
+                        <li class="breadcrumb-item active" aria-current="page">Galeri</li>
                     </ol>
                 </nav>
             </div>
@@ -41,7 +41,7 @@
                 {{-- div with flex justify --}}
                 <div class="d-flex justify-content-between">
                     <h5 class="card-title">
-                        Layanan Publik
+                        Daftar Foto 
                     </h5>
                     <a href="{{ route('admin.gallery.create') }}" class="btn btn-primary" >
                         Tambah Foto
@@ -75,9 +75,9 @@
                                         <a href="{{ route('admin.gallery.edit', $gallery->id) }}" class="btn btn-outline-primary">
                                             Edit
                                         </a>
-                                        <button type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
+                                        <button type="button" class="btn btn-primary block" data-bs-toggle="modal"
                                             data-bs-target="#deleteModal" data-bs-idketua="{{ $gallery->id }}">
-                                            Hapus (Belum berfungsi)
+                                            Hapus
                                         </button>
                                     </td>
                                 </tr>

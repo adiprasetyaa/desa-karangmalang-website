@@ -57,12 +57,12 @@ class GalleryController extends Controller
     
         // Check if the creation was successful
         if (!$galleries) {
-            return redirect()->back()->with('error', 'Failed to create Struktur Organisasi');
+            return redirect()->back()->with('error', 'Foto Gagal ditambahkan');
         }
     
         // Return JSON response on success
         return response()->json([
-            'message' => 'Struktur Organisasi created successfully',
+            'message' => 'Foto berhasil ditambahkan',
             'data' => $galleries
         ]);
     }

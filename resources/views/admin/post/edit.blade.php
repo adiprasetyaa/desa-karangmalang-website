@@ -3,6 +3,7 @@
 @section('css')
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('assets/admin')}}/extensions/choices.js/public/assets/styles/choices.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 @endsection
 
 @section('heading')
@@ -101,8 +102,8 @@
 <script src="{{ asset('assets/admin')}}/extensions/jquery/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 <script src="{{ asset('assets/admin')}}/extensions/choices.js/public/assets/scripts/choices.js"></script>
-<script src="{{ asset('assets/admin')}}/static/js/pages/form-element-select.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <!-- <script src="{{ asset('assets/admin')}}/static/js/pages/quill.js"></script> -->
 <script>
@@ -112,72 +113,60 @@
 <script>
 const toolbarOptions = [
     [{ 'font': [] }],
-    [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+    [{ 'size': ['small', false, 'large', 'huge'] }],
     [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-  ['blockquote', 'code-block'],
-  
-  [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-  [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'list': 'check' }],
-  [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-  [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-  [{ 'direction': 'rtl' }],                         // text direction
-  ['link', 'image', 'video', 'formula'],
-
-
-  [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-  [{ 'align': [] }],
-
-  ['table'],
-  ['clean']                                         // remove formatting button
+    ['bold', 'italic', 'underline', 'strike'],
+    ['blockquote', 'code-block'],
+    [{ 'header': 1 }, { 'header': 2 }],
+    [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'list': 'check' }],
+    [{ 'script': 'sub'}, { 'script': 'super' }],
+    [{ 'indent': '-1'}, { 'indent': '+1' }],
+    [{ 'direction': 'rtl' }],
+    ['link', 'image', 'video', 'formula'],
+    [{ 'color': [] }, { 'background': [] }],
+    [{ 'align': [] }],
+    ['table'],
+    ['clean']
 ];
 
-
 const quill = new Quill('#editor', {
-  modules: {
-    toolbar: toolbarOptions
-  },
-  theme: 'snow'
+    modules: {
+        toolbar: toolbarOptions
+    },
+    theme: 'snow'
 });
-const rapikanwkwkw = JSON.parse({!! json_encode($post->content) !!}); 
+
+const rapikanwkwkw = JSON.parse({!! json_encode($post->content) !!});
 quill.setContents(rapikanwkwkw);
 
 document.getElementById('updatePost').addEventListener('click', function() {
-    // axios post data with jquery
-    console.log('editing');
-
     const title = $('#title').val();
     const content = quill.getContents();
-
     const formData = new FormData();
     formData.append('title', title);
     formData.append('content', JSON.stringify(content));
     formData.append('_method', 'PATCH');
-    // selected categories
 
-
-    if($('#image')[0].files[0] ) {
+    if ($('#image')[0].files[0]) {
         formData.append('image', $('#image')[0].files[0]);
     }
     formData.append('category_ids', $('#categories').val());
 
-    axios.post("{{ route('admin.post.update',$post->id  ) }}", formData, {
+    axios.post("{{ route('admin.post.update', $post->id) }}", formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
     }).then(response => {
         if (response.data.status_code === 200) {
-            showToast('success', response.data.message);
+            toastr.success(response.data.message, 'Success');
             setTimeout(() => {
                 window.location.reload();
             }, 1000);
         }
-
     }).catch(error => {
-        showToast('error', error.response.data.message);
+        toastr.error(error.response.data.message, 'Error');
         console.log(error);
     });
-
 });
 </script>
 

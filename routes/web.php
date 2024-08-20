@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
+use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\BPDController;
 use App\Http\Controllers\BUMDESController;
 use App\Http\Controllers\CategoryController;
@@ -75,6 +76,10 @@ Route::middleware('guest')->group(function () {
 
     Route::get('/profil-desa/demografi-desa', [InfoDemografiController::class, 'guestView'])->name('guest.profil_desa.demografi_desa');
     Route::get('/profil-desa/geografis-desa', [InfoGeografisController::class, 'guestView'])->name('guest.profil_desa.geografis_desa');
+    Route::get('informasi-publik/artikel', [ArtikelController::class, 'index'])->name('guest.informasi_publik.artikel.index');
+    Route::get('informasi-publik/artikel/{id}', [ArtikelController::class, 'show'])->name('guest.informasi_publik.artikel.show');
+
+    
 });
 
 // Admin group prefix

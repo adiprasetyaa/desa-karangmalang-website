@@ -187,6 +187,8 @@
                 
                 addNewRow(new_data);
                 showToast('success', response.message);
+                window.location.reload(); // Reload the page after success
+
             },
             error: function(error) {
                 console.error('Error:', error);
