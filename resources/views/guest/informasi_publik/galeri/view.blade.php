@@ -23,7 +23,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Portfolio</li>
+                            <li class="breadcrumb-item active" aria-current="page">Galeri</li>
                         </ol>
                     </nav>
                 </div>
@@ -39,8 +39,8 @@
                 <div class="col-12">
                     <!-- Section Heading -->
                     <div class="section-heading text-center">
-                        <h2>GALERI DESA</h2>
-                        <p>We devote all of our experience and efforts for creation</p>
+                        <h2>Ragam Aktivitas di Desa Karangmalang</h2>
+                        <p>Galeri Foto yang Menampilkan Kegiatan Masyarakat</p>
                     </div>
                 </div>
             </div>

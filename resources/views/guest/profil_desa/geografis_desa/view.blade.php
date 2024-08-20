@@ -20,7 +20,7 @@
     <div class="breadcrumb-area">
         <!-- Top Breadcrumb Area -->
         <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url({{ asset('assets/guest') }}/static/images/bg_hero/bg_hero_1.png);">
-            <h2>VISI DAN MISI DESA</h2>
+            <h2>Geografis Desa</h2>
         </div>
 
         <div class="container">
@@ -30,7 +30,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}"><i class="fa fa-home"></i> Home</a></li>
                             <li class="breadcrumb-item"><a href="#">Profil Desa</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Visi dan Misi</li>
+                            <li class="breadcrumb-item active" aria-current="page">Geografis Desa</li>
                         </ol>
                     </nav>
                 </div>
@@ -46,8 +46,8 @@
                 <div class="col-12">
                     <!-- Section Heading -->
                     <div class="section-heading text-center">
-                        <h2>Menuju Desa Karangmalang yang Sejahtera</h2>
-                        <p>Visi dan Misi Desa Karangmalang</p>
+                        <h2>Letak Geografis Desa Karangmalang</h2>
+                        <p>Gambaran Umum Wilayah dan Batas-Batas Desa</p>
                     </div>
                 </div>
             </div>
@@ -58,33 +58,39 @@
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-12 col-lg-8">
-                    <div class="col-12 col-lg-12 mt-4">
-                        <h5>Visi Desa Karangmalang</h5>
-                        <div class="card-body">
-                            <div class="hide" hidden>
-                                    <div id="editorVisi" hidden>
-
+        
+                    <div class="col-12 col-lg-12">
+                                <div class="card-body">
+                                    <div class="hide" hidden>
+                                        <div id="editor" hidden>
+        
+                                        </div>
                                     </div>
+                                    <div id="semantichtml" class="ql-editor"></div>
                                 </div>
-                                <div id="semantichtmlVisi" class="ql-editor">
                             </div>
-                        </div>
                     </div>
-                    <div class="col-12 col-lg-12 mt-4">
-                        <h5>Misi Desa Karangmalang</h5>
-                        <div class="card-body">
-                            <div class="hide" hidden>
-                                <div id="editorMisi" hidden>
 
-                                </div>
-                            </div>
-                            <div id="semantichtmlMisi" class="ql-editor">
-                            </div>
-                        </div>
-                    </div>
+                    <div>
                 </div>
 
                 <div class="col-12 col-lg-3 mt-3 mb-3">
+                    <!-- ##### Single Widget Area ##### -->
+                    <div class="single-widget-area">
+                            <!-- Title -->
+                            <div class="widget-title">
+                                <h4>LEMBAGA DESA</h4>
+                            </div>
+                            <!-- Tags -->
+                            <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><a href="{{ route('guest.pemerintahan.lembaga_desa.bpd') }}">Badan Permusyawaratan Desa (BPD)</a></li>
+                                    <li class="list-group-item"><a href="{{ route('guest.pemerintahan.lembaga_desa.bumdes') }}">Badan Usaha Milik Desa (BUMDES)</a></li>
+                                    <li class="list-group-item"><a href="{{ route('guest.pemerintahan.lembaga_desa.linmas') }}">Perlindungan Masyarakat (LINMAS)</a></li>
+                                    <li class="list-group-item"><a href="{{ route('guest.pemerintahan.lembaga_desa.lkd') }}">Lembaga Kemasyarakatan Desa (LKD)</a></li>
+                                    <li class="list-group-item"><a href="{{ route('guest.pemerintahan.lembaga_desa.lpmd') }}">Lembaga Pemberdayaan Masyarakat Desa (LPMD)</a></li>
+                                    <li class="list-group-item"><a href="{{ route('guest.pemerintahan.lembaga_desa.spmdes') }}">Standar Pelayanan Minimal Desa (SPMDES)</a></li>
+                            </ul>
+                    </div>
                     <!-- ##### Single Widget Area ##### -->
                     <div class="single-widget-area">
                             <!-- Title -->
@@ -118,31 +124,20 @@
 
     <script>
 
-        const visiQuill = new Quill('#editorVisi', {
-        
-        theme: 'snow',
-        readOnly: true,  // Set to read-only mode
-        });
+        const quill = new Quill('#editor', {
 
-        const misiQuill = new Quill('#editorMisi', {
-        
         theme: 'snow',
         readOnly: true,  // Set to read-only mode
         });
 
 
+        const geografis_desa = {!! $geografis_desa->description !!}; 
+        quill.setContents(geografis_desa);
 
-        const visi = {!! $visi_misi->visi !!}; 
-        visiQuill.setContents(visi);
+        $('#semantichtml').html(quill.getSemanticHTML());
 
-        const misi = {!! $visi_misi->misi !!}; 
-        misiQuill.setContents(misi);
-
-
-        $('#semantichtmlVisi').html(visiQuill.getSemanticHTML());
-        $('#semantichtmlMisi').html(misiQuill.getSemanticHTML());
     </script>
-    
+
 </body>
 
 </html>

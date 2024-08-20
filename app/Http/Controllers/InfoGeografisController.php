@@ -9,8 +9,13 @@ class InfoGeografisController extends Controller
 {
     public function index()
     {
-        $geografis_desa= InfoGeografis::find(1); // Mengambil post dengan id 1
+        $geografis_desa= InfoGeografis::first(); // Mengambil post dengan id 1
         return view('admin.profil_desa.geografis_desa.index', compact('geografis_desa'));
+    }
+
+    public function guestView(){
+        $geografis_desa = InfoGeografis::first(); // Mengambil post dengan id 1
+        return view('guest.profil_desa.geografis_desa.view', compact('geografis_desa'));
     }
 
     public function create()

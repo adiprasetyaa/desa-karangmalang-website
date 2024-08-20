@@ -19,6 +19,7 @@ use App\Http\Controllers\LayananPublikController;
 use App\Http\Controllers\LinmasController;
 use App\Http\Controllers\LKDController;
 use App\Http\Controllers\LPMDController;
+use App\Http\Controllers\PemerintahDesaController;
 use App\Http\Controllers\PeopleController;
 use App\Http\Controllers\PerangkatDesaController;
 use App\Http\Controllers\PeriodeController;
@@ -27,6 +28,7 @@ use App\Http\Controllers\SPMDESController;
 use App\Http\Controllers\StrukturOrganisasiController;
 use App\Http\Controllers\TentangKamiController;
 use App\Http\Controllers\VisiMisiController;
+use App\Models\InfoGeografis;
 use App\Models\LayananPublik;
 use App\Models\Linmas;
 use App\Models\Role;
@@ -68,6 +70,11 @@ Route::middleware('guest')->group(function () {
     Route::get('/informasi-publik/layanan-publik', [LayananPublikController::class, 'guestView'])->name('guest.informasi_publik.layanan_publik');
 
     Route::get('/informasi-publik/galeri', [GalleryController::class, 'guestView'])->name('guest.informasi_publik.galeri');
+
+    Route::get('/pemerintahan/pemerintah-desa', [PemerintahDesaController::class, 'view'])->name('guest.pemerintahan.pemerintah_desa');
+
+    Route::get('/profil-desa/demografi-desa', [InfoDemografiController::class, 'guestView'])->name('guest.profil_desa.demografi_desa');
+    Route::get('/profil-desa/geografis-desa', [InfoGeografisController::class, 'guestView'])->name('guest.profil_desa.geografis_desa');
 });
 
 // Admin group prefix

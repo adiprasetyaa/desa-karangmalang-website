@@ -100,7 +100,7 @@
             <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-idbpd="${bpd.id}" data-bs-target="#editModal">
                 Edit
             </button>
-            <button type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
+            <button type="button" class="btn btn-primary block" data-bs-toggle="modal"
                 data-bs-target="#deleteModal" data-bs-idbpd="${bpd.id}">
                 Hapus
             </button>

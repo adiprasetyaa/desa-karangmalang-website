@@ -24,6 +24,47 @@
                     </a>
                 </li>
 
+                <li class="sidebar-title">Informasi Desa</li>
+
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-egg-fill"></i>
+                        <span>Profil Desa</span>
+                    </a>
+
+                    <ul class="submenu ">
+
+                        <li class="submenu-item  {{ request()->routeIs('admin.tentang_kami.index') ? 'active' : '' }}">
+                            <a href="{{ route('admin.tentang_kami.index') }}" class="submenu-link">Tentang Kami</a>
+                        </li>
+
+                        <li class="submenu-item  ">
+                            <a href="{{ route('admin.visimisi.index') }}" class="submenu-link">Visi &amp; Misi </a>
+                        </li>
+
+                        <li class="submenu-item  ">
+                            <a href="{{ route('admin.geografis_desa.index') }}" class="submenu-link">Geografis Desa</a>
+                        </li>
+
+                        <li class="submenu-item  ">
+                            <a href="{{ route('admin.demografi_desa.index') }}" class="submenu-link">Demografis Desa</a>
+                        </li>
+                    </ul>
+
+
+                </li>
+
+                <li class="sidebar-title">Pemerintahan</li>
+
+                <li class="sidebar-item {{ request()->routeIs('admin.struktur_organisasi.index') ? 'active' : '' }}">
+                    <a href="{{ route('admin.struktur_organisasi.index') }}" class='sidebar-link'>
+                        <i class="bi bi-envelope-fill"></i>
+                        <span>Struktur Organisasi</span>
+                    </a>
+
+
+                </li>
+
                 <li class="sidebar-item {{ request()->routeIs('admin.kades.view') ? 'active' : '' }}">
                     <a href="{{ route('admin.kades.view') }}" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
@@ -38,52 +79,8 @@
                     </a>
                 </li>
 
-                <li class="sidebar-title">Informasi Desa</li>
-
-                <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-egg-fill"></i>
-                        <span>Profil Desa</span>
-                    </a>
-
-                    <ul class="submenu ">
-
-                        <li class="submenu-item  ">
-                            <a href="ui-icons-fontawesome.html" class="submenu-link">Tentang Kami</a>
-
-                        </li>
-
-                        <li class="submenu-item  ">
-                            <a href="ui-icons-bootstrap-icons.html" class="submenu-link">Visi &amp; Misi </a>
-
-                        </li>
-
-                        <li class="submenu-item  ">
-                            <a href="ui-icons-fontawesome.html" class="submenu-link">Geografis Desa</a>
-
-                        </li>
-
-                        <li class="submenu-item  ">
-                            <a href="ui-icons-dripicons.html" class="submenu-link">Demografis Desa</a>
-                        </li>
-                    </ul>
-
-
-                </li>
-
-                <li class="sidebar-title">Pemerintahan</li>
-
-                <li class="sidebar-item  ">
-                    <a href="application-email.html" class='sidebar-link'>
-                        <i class="bi bi-envelope-fill"></i>
-                        <span>Struktur Organisasi</span>
-                    </a>
-
-
-                </li>
-
-                <li class="sidebar-item  ">
-                    <a href="application-email.html" class='sidebar-link'>
+                <li class="sidebar-item  sidebar-item {{ request()->routeIs('admin.perangkat_desa.index') ? 'active' : '' }}">
+                    <a href="{{ route('admin.perangkat_desa.index') }}" class='sidebar-link'>
                         <i class="bi bi-envelope-fill"></i>
                         <span>Perangkat Desa</span>
                     </a>
@@ -134,32 +131,11 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-egg-fill"></i>
+                <li class="sidebar-item  ">
+                    <a href="{{ route('admin.layanan_publik.index') }}" class="sidebar-link {{ request()->routeIs('admin.layanan_publik.index') ? 'active' : '' }}">
+                        <i class="bi bi-envelope-fill"></i>
                         <span>Layanan Publik</span>
                     </a>
-
-                    <ul class="submenu ">
-
-                        <li class="submenu-item  ">
-                            <a href="ui-icons-bootstrap-icons.html" class="submenu-link">KTP</a>
-
-                        </li>
-
-                        <li class="submenu-item  ">
-                            <a href="ui-icons-fontawesome.html" class="submenu-link">KK</a>
-
-                        </li>
-
-                        <li class="submenu-item  ">
-                            <a href="ui-icons-dripicons.html" class="submenu-link">Akta Kelahiran</a>
-                        </li>
-
-                        <li class="submenu-item  ">
-                            <a href="ui-icons-dripicons.html" class="submenu-link">Lain-lain</a>
-                        </li>
-                    </ul>
                 </li>
 
                 <li class="sidebar-item  has-sub">
@@ -189,29 +165,24 @@
 
 
                 <li class="sidebar-item  ">
-                    <a href="application-email.html" class='sidebar-link'>
+                    <a href="{{ route('admin.gallery.index') }}" class="sidebar-link {{ request()->routeIs('admin.gallery.index') ? 'active' : '' }}">
                         <i class="bi bi-envelope-fill"></i>
                         <span>Galeri</span>
                     </a>
                 </li>
 
-                <li class="sidebar-item  ">
-                    <a href="application-email.html" class='sidebar-link'>
-                        <i class="bi bi-envelope-fill"></i>
-                        <span>Download</span>
-                    </a>
-                </li>
-
                 <li class="sidebar-title">Setting</li>
 
-                <li class="sidebar-item  ">
-                    <a href="application-email.html" class='sidebar-link'>
+                <li class="sidebar-item">
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    <a href="#" class="sidebar-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="bi bi-envelope-fill"></i>
                         <span>Logout</span>
                     </a>
-
-
                 </li>
+
 
 
             </ul>

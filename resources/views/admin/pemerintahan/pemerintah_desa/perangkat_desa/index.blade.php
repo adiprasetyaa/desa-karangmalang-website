@@ -71,9 +71,9 @@
                                         <a href="{{ route('admin.perangkat_desa.edit', $perangkat->id) }}" class="btn btn-outline-primary">
                                             Edit
                                         </a>
-                                        <button type="button" class="btn btn-outline-primary block" data-bs-toggle="modal"
+                                        <button type="button" class="btn btn-primary block" data-bs-toggle="modal"
                                             data-bs-target="#deleteModal" data-bs-idperangkatdesa="{{ $perangkat->id }}">
-                                            Hapus (Belum berfungsi)
+                                            Hapus
                                         </button>
                                     </td>
                                 </tr>

@@ -12,8 +12,13 @@ class InfoDemografiController extends Controller
      */
     public function index()
     {
-        $demografi_desa = InfoDemografi::find(1); // Mengambil post dengan id 1
+        $demografi_desa = InfoDemografi::first(); // Mengambil post dengan id 1
         return view('admin.profil_desa.demografi_desa.index', compact('demografi_desa'));
+    }
+
+    public function guestView(){
+        $demografi_desa = InfoDemografi::first(); // Mengambil post dengan id 1
+        return view('guest.profil_desa.demografi_desa.view', compact('demografi_desa'));
     }
 
     public function create()

@@ -41,14 +41,6 @@
                 <h4 class="card-title">Visi dan Misi</h4>
             </div>
             <div class="card-body">
-                <h5>ID: {{ $visiMisi->id }}</h5>
-                <p>Judul: {{ $visiMisi->visi }}<p>
-                <p>Konten: {{ $visiMisi->misi }}</p>
-                
-                 <!-- Add the Edit Button -->
-                 <a href="{{ route('admin.visimisi.edit', $visiMisi->id) }}" class="btn btn-primary">Edit</a>
-            </div>
-            <div class="card-body">
                 <div class="hide" hidden>
                     <div id="editorVisi" hidden>
 
@@ -65,6 +57,10 @@
                 </div>
                 <div id="semantichtmlMisi" class="ql-editor">
                 </div>
+            </div>
+            <div class="card-body">
+                 <!-- Add the Edit Button -->
+                 <a href="{{ route('admin.visimisi.edit', $visiMisi->id) }}" class="btn btn-primary">Edit</a>
             </div>
         </div>
     </section>

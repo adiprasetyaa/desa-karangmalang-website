@@ -104,7 +104,7 @@ document.getElementById('submitInfoDemografiButton').addEventListener('click', f
     const formData = new FormData();
     formData.append('description', JSON.stringify(content));
 
-    axios.post('/admin/info_demografi', formData, {
+    axios.post('/admin/demografi_desa', formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
