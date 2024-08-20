@@ -16,6 +16,13 @@ class VisiMisiController extends Controller
         return view('admin.profil_desa.visi_misi.index', compact('visiMisi'));
     }
 
+    public function guestView()
+    {
+        $visi_misi = VisiMisi::first(); // Mengambil semua data BPD dari database
+
+        return view('guest.profil_desa.visi_misi.view', compact('visi_misi')); // Mengirim data ke view
+    }
+
     public function create()
     {
         $visiMisi = VisiMisi::all();

@@ -17,6 +17,13 @@ class TentangKamiController extends Controller
         return view('admin.profil_desa.tentang_kami.index', compact('tentangkami'));
     }
 
+    public function guestView()
+    {
+        $tentang_kami = TentangKami::first(); // Mengambil semua data BPD dari database
+
+        return view('guest.profil_desa.tentang_kami.view', compact('tentang_kami')); // Mengirim data ke view
+    }
+
     /**
      * Show the form for creating a new resource.
      */

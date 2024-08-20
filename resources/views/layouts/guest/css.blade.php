@@ -12,3 +12,5 @@
 
 <!-- Core Stylesheet -->
 <link rel="stylesheet" href="{{asset('assets/guest/css/style.css')}}">
+
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">

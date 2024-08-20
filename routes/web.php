@@ -5,10 +5,13 @@ use App\Http\Controllers\Admin\Dashboard\DashboardController;
 use App\Http\Controllers\BPDController;
 use App\Http\Controllers\BUMDESController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InfoDemografiController;
+use App\Http\Controllers\InfoGeografisController;
 use App\Http\Controllers\KadesController;
 use App\Http\Controllers\KadesPeriodeController;
 use App\Http\Controllers\KetuaRTController;
@@ -26,7 +29,10 @@ use App\Http\Controllers\TentangKamiController;
 use App\Http\Controllers\VisiMisiController;
 use App\Models\LayananPublik;
 use App\Models\Linmas;
+use App\Models\Role;
 use App\Models\SPMDES;
+use App\Models\TentangKami;
+use App\Models\VisiMisi;
 
 Route::get('/', function () {
     return view('welcome');
@@ -55,6 +61,13 @@ Route::middleware('guest')->group(function () {
     Route::get('/pemerintahan/lembaga-desa/lkd', [LKDController::class, 'guestView'])->name('guest.pemerintahan.lembaga_desa.lkd');
     Route::get('/pemerintahan/lembaga-desa/lpmd', [LPMDController::class, 'guestView'])->name('guest.pemerintahan.lembaga_desa.lpmd');
     Route::get('/pemerintahan/lembaga-desa/spmdes', [SPMDESController::class, 'guestView'])->name('guest.pemerintahan.lembaga_desa.spmdes');
+
+    Route::get('/profil-desa/visi-misi', [VisiMisiController::class, 'guestView'])->name('guest.profil_desa.visi_misi');
+    Route::get('/profil-desa/tentang-kami', [TentangKamiController::class, 'guestView'])->name('guest.profil_desa.tentang_kami');
+
+    Route::get('/informasi-publik/layanan-publik', [LayananPublikController::class, 'guestView'])->name('guest.informasi_publik.layanan_publik');
+
+    Route::get('/informasi-publik/galeri', [GalleryController::class, 'guestView'])->name('guest.informasi_publik.galeri');
 });
 
 // Admin group prefix
@@ -103,6 +116,11 @@ Route::group(
         Route::resource('layanan_publik', LayananPublikController::class);
 
         Route::resource('struktur_organisasi', StrukturOrganisasiController::class);
+
+        Route::resource('demografi_desa', InfoDemografiController::class);
+        Route::resource('geografis_desa', InfoGeografisController::class);
+
+        Route::resource('gallery', GalleryController::class);
     }
 );
 

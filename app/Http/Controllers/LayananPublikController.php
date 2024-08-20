@@ -17,6 +17,13 @@ class LayananPublikController extends Controller
         return view('admin.informasi_publik.layanan_publik.index', compact('layanan_publik'));
     }
 
+    public function guestView()
+    {
+        //
+        $layanan_publik = LayananPublik::all();
+        return view('guest.informasi_publik.layanan_publik.view', compact('layanan_publik'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

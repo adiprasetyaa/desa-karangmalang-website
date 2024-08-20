@@ -91,7 +91,7 @@
                             <p>Pemerintah Desa Karangmalang senantiasa berupaya memberikan pelayanan terbaik bagi masyarakat. Kami hadir untuk memenuhi kebutuhan masyarakat, baik dalam hal administrasi, pembangunan, maupun pemberdayaan masyarakat. Dengan transparansi dan akuntabilitas yang tinggi, kami berkomitmen untuk mewujudkan pemerintahan yang bersih dan melayani.</p>
                         </div> -->
 
-                        <p  style="text-align: center;">Pemerintah Desa Karangmalang senantiasa berupaya memberikan pelayanan terbaik bagi masyarakat. Kami hadir untuk memenuhi kebutuhan masyarakat, baik dalam hal administrasi, pembangunan, maupun pemberdayaan masyarakat. Dengan transparansi dan akuntabilitas yang tinggi, kami berkomitmen untuk mewujudkan pemerintahan yang bersih dan melayani.</p>
+                        <p  style="text-align: center;">{{ $tentang_kami->description }}</p>
 
                     </div>
                 </div>

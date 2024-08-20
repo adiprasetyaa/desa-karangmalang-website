@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Log;
 use App\Models\PerangkatDesa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PerangkatDesaController extends Controller
 {
@@ -14,8 +15,8 @@ class PerangkatDesaController extends Controller
     public function index()
     {
         //
-        $perangkatdesa = PerangkatDesa::all();
-        return view('perangkatdesa.index', compact('perangkatdesa'));
+        $perangkat_desa = PerangkatDesa::all();
+        return view('admin.pemerintahan.pemerintah_desa.perangkat_desa.index', compact('perangkat_desa'));
     }
 
     /**
@@ -24,6 +25,7 @@ class PerangkatDesaController extends Controller
     public function create()
     {
         // null
+        return view('admin.pemerintahan.pemerintah_desa.perangkat_desa.create');
     }
 
     /**
@@ -31,96 +33,113 @@ class PerangkatDesaController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate the request input
         $attributes = $request->validate([
-            'nama' => 'required|string',
-            'jabatan' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'Nama' => 'required|string|max:255',
+            'Jabatan' => 'required|string|max:255'
         ]);
+    
+        // Handle the image upload if present
+        // Handle the image upload if present
+        if ($request->hasFile('image')) {
+            $attributes['image'] = $request->file('image')->store('public/images/pemerintahan/pemerintah_desa/perangkat_desa');
+        }
 
-        PerangkatDesa::create($attributes);
-
-        Log::create([
-            'ip_address' => $request->ip(),
-            'user_id' => auth()->id(),
-            'message' => 'menambahkan data Perangkat Desa',
-            'old_data' => '-',
-            'new_data' => json_encode($attributes),
-        ]);
-
+    
+        // Create the StrukturOrganisasi record
+        $perangkat_desa = PerangkatDesa::create($attributes);
+    
+        // Check if the creation was successful
+        if (!$perangkat_desa) {
+            return redirect()->back()->with('error', 'Failed to create Struktur Organisasi');
+        }
+    
+        // Return JSON response on success
         return response()->json([
-            'success' => true,
-            'status_code' => 200,
-            'message' => 'Data Perangkat Desa berhasil ditambahkan'
+            'message' => 'Struktur Organisasi created successfully',
+            'data' => $perangkat_desa
         ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(PerangkatDesa $perangkatDesa)
+    public function show($id)
     {
-        return response()->json([
-            'success' => true,
-            'status_code' => 200,
-            'data' => $perangkatDesa
-        ]);
+        $perangkat_desa = PerangkatDesa::find($id);
+        return view('admin.pemerintahan.pemerintah_desa.perangkat_desa.show', compact('perangkat_desa'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PerangkatDesa $perangkatDesa)
+    public function edit($id)
     {
         // null
+        $perangkat_desa = PerangkatDesa::find($id);
+
+        return view('admin.pemerintahan.pemerintah_desa.perangkat_desa.edit', compact('perangkat_desa'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PerangkatDesa $perangkatDesa)
+    public function update(Request $request, $id)
     {
+        // Validate the request input
         $attributes = $request->validate([
-            'nama' => 'required|string',
-            'jabatan' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'Nama' => 'required|string|max:255',
+            'Jabatan' => 'required|string|max:255'
         ]);
 
-        $old_data = $perangkatDesa;
-        $perangkatDesa->update($attributes);
+        $perangkat_desa = PerangkatDesa::find($id);
 
-        Log::create([
-            'ip_address' => $request->ip(),
-            'user_id' => auth()->id(),
-            'message' => 'mengubah data Perangkat Desa',
-            'old_data' => json_encode($old_data),
-            'new_data' => json_encode($attributes),
-        ]);
+        if (!$perangkat_desa) {
+            return response()->json(['error' => 'Struktur Organisasi not found'], 404);
+        }
 
+        // Handle the image upload if present
+        if ($request->hasFile('image')) {
+            // Delete the old image if it exists
+            if ($perangkat_desa->image) {
+                Storage::delete($perangkat_desa->image);
+            }
+    
+            // Store the new image
+            $attributes['image'] = $request->file('image')->store('public/images/pemerintahan/pemerintah_desa/perangkat_desa');
+        }
+    
+        // Update the record with the new attributes
+        $perangkat_desa->update($attributes);
+    
+        // Return a JSON response with success message
         return response()->json([
-            'success' => true,
-            'status_code' => 200,
-            'message' => 'Data Perangkat Desa berhasil diubah'
+            'message' => 'Struktur Organisasi updated successfully',
+            'data' => $perangkat_desa
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, PerangkatDesa $perangkatDesa)
-    {
-        $old_data = $perangkatDesa;
-        $perangkatDesa->delete();
 
-        Log::create([
-            'ip_address' => $request->ip(),
-            'user_id' => auth()->id(),
-            'message' => 'menghapus data Perangkat Desa',
-            'old_data' => json_encode($old_data),
-            'new_data' => '-',
-        ]);
-
-        return response()->json([
-            'success' => true,
-            'status_code' => 200,
-            'message' => 'Data Perangkat Desa berhasil dihapus'
-        ]);
-    }
+     public function destroy($id)
+     {
+         // Cari data LayananPublik berdasarkan id
+         $perangkat_desa = PerangkatDesa::find($id);
+     
+         // Jika tidak ditemukan, kembalikan error
+         if (!$perangkat_desa) {
+             return redirect()->route('admin.perangkat_desa.index')->with('error', 'Layanan Publik not found');
+         }
+     
+         // Hapus layanan publik
+         $perangkat_desa->delete();
+     
+         // Redirect ke halaman index dengan pesan sukses
+         return redirect()->route('admin.perangkat_desa.index')->with('success', 'Layanan Publik deleted successfully');
+     }
 }
