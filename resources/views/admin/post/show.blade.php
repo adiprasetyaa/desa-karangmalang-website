@@ -43,7 +43,7 @@
 
                     </div>
                 </div>
-                <div id="semantichtml" class="ql-editor">
+                <div id="semantichtml" class="quill-content">
                 </div>
             </div>
         </div>
@@ -57,24 +57,24 @@
 
 <!-- <script src="{{ asset('assets/admin')}}/static/js/pages/quill.js"></script> -->
 <script>
-
-
-</script>
-<script>
-
 const quill = new Quill('#editor', {
- 
   theme: 'snow',
-  readOnly: true,  // Set to read-only mode
+  readOnly: true,
 });
 
-
-
-const rapikanwkwkw = {!! $post->content !!}; 
+const rapikanwkwkw = JSON.parse({!! json_encode($post->content) !!}); 
 quill.setContents(rapikanwkwkw);
 
+// Render the content in a new Quill instance for display
+const renderedQuill = new Quill('#semantichtml', {
+  theme: 'snow',
+  readOnly: true,
+  modules: {
+    toolbar: false  // Disable the toolbar for the rendered content
+  }
+});
 
-$('#semantichtml').html(quill.getSemanticHTML());
+renderedQuill.setContents(quill.getContents());
 </script>
 
 
