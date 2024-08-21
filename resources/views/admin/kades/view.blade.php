@@ -151,17 +151,14 @@
     }
 </script>
 <script>
-    // write a script to increase photo size when hovering
-    // write a script to show a modal when clicking the photo
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     const photo = document.getElementById('photo');
+    //     const modal = document.getElementById('photoModal');
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const photo = document.getElementById('photo');
-        const modal = document.getElementById('photoModal');
-
-        photo.addEventListener('click', function() {
-            modal.show();
-        });
-    });
+    //     photo.addEventListener('click', function() {
+    //         modal.show();
+    //     });
+    // });
     
 </script>
 
@@ -339,7 +336,7 @@
                     new_data[pair[0]] = pair[1];
                 }
 
-                new_data.ttl = TTL(new_data.tempat_lahir, new_data.tanggal_lahir);
+                // new_data.ttl = TTL(new_data.tempat_lahir, new_data.tanggal_lahir);
                 // updateRow(rowIndex, new_data);
                 refetchIndex();
                 showToast('success', response.message);
