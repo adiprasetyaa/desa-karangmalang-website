@@ -13,14 +13,21 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        // create superadmin
+        // create admin
         $admin = User::create([
-            'name' => 'Admin',
+            'name' => 'KKN185UNS',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('password'),
         ]);
 
+        $krgmalang = User::create([
+            'name' => 'Admin',
+            'email' => 'desakarangmalangmasaran@gmail.com',
+            'password' => bcrypt('password'),
+        ]);
+
             // grant role as superadmin
-            $admin->addRole('administrator');
+        $admin->addRole('administrator');
+        $krgmalang->addRole('administrator');
     }
 }
