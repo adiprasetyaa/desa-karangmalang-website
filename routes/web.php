@@ -45,7 +45,7 @@ Route::get('/', function () {
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return redirect()->route('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -54,30 +54,33 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Guest
+Route::get('/pemerintahan/lembaga-desa/bpd', [BPDController::class, 'guestView'])->name('guest.pemerintahan.lembaga_desa.bpd');
+Route::get('/pemerintahan/lembaga-desa/bumdes', [BUMDESController::class, 'guestView'])->name('guest.pemerintahan.lembaga_desa.bumdes');
+Route::get('/pemerintahan/lembaga-desa/linmas', [LinmasController::class, 'guestView'])->name('guest.pemerintahan.lembaga_desa.linmas');
+Route::get('/pemerintahan/lembaga-desa/lkd', [LKDController::class, 'guestView'])->name('guest.pemerintahan.lembaga_desa.lkd');
+Route::get('/pemerintahan/lembaga-desa/lpmd', [LPMDController::class, 'guestView'])->name('guest.pemerintahan.lembaga_desa.lpmd');
+Route::get('/pemerintahan/lembaga-desa/spmdes', [SPMDESController::class, 'guestView'])->name('guest.pemerintahan.lembaga_desa.spmdes');
+
+Route::get('/profil-desa/visi-misi', [VisiMisiController::class, 'guestView'])->name('guest.profil_desa.visi_misi');
+Route::get('/profil-desa/tentang-kami', [TentangKamiController::class, 'guestView'])->name('guest.profil_desa.tentang_kami');
+
+Route::get('/informasi-publik/layanan-publik', [LayananPublikController::class, 'guestView'])->name('guest.informasi_publik.layanan_publik');
+
+Route::get('/informasi-publik/galeri', [GalleryController::class, 'guestView'])->name('guest.informasi_publik.galeri');
+
+Route::get('/pemerintahan/pemerintah-desa', [PemerintahDesaController::class, 'view'])->name('guest.pemerintahan.pemerintah_desa');
+
+Route::get('/profil-desa/demografi-desa', [InfoDemografiController::class, 'guestView'])->name('guest.profil_desa.demografi_desa');
+Route::get('/profil-desa/geografis-desa', [InfoGeografisController::class, 'guestView'])->name('guest.profil_desa.geografis_desa');
+Route::get('informasi-publik/artikel', [ArtikelController::class, 'index'])->name('guest.informasi_publik.artikel.index');
+Route::get('informasi-publik/artikel/{id}', [ArtikelController::class, 'show'])->name('guest.informasi_publik.artikel.show');
+
 // Admin Login
 Route::middleware('guest')->group(function () {
     Route::get('/admin', [LoginController::class, 'create'])->name('admin.login');
     Route::post('/admin', [LoginController::class, 'store']);
-    Route::get('/pemerintahan/lembaga-desa/bpd', [BPDController::class, 'guestView'])->name('guest.pemerintahan.lembaga_desa.bpd');
-    Route::get('/pemerintahan/lembaga-desa/bumdes', [BUMDESController::class, 'guestView'])->name('guest.pemerintahan.lembaga_desa.bumdes');
-    Route::get('/pemerintahan/lembaga-desa/linmas', [LinmasController::class, 'guestView'])->name('guest.pemerintahan.lembaga_desa.linmas');
-    Route::get('/pemerintahan/lembaga-desa/lkd', [LKDController::class, 'guestView'])->name('guest.pemerintahan.lembaga_desa.lkd');
-    Route::get('/pemerintahan/lembaga-desa/lpmd', [LPMDController::class, 'guestView'])->name('guest.pemerintahan.lembaga_desa.lpmd');
-    Route::get('/pemerintahan/lembaga-desa/spmdes', [SPMDESController::class, 'guestView'])->name('guest.pemerintahan.lembaga_desa.spmdes');
-
-    Route::get('/profil-desa/visi-misi', [VisiMisiController::class, 'guestView'])->name('guest.profil_desa.visi_misi');
-    Route::get('/profil-desa/tentang-kami', [TentangKamiController::class, 'guestView'])->name('guest.profil_desa.tentang_kami');
-
-    Route::get('/informasi-publik/layanan-publik', [LayananPublikController::class, 'guestView'])->name('guest.informasi_publik.layanan_publik');
-
-    Route::get('/informasi-publik/galeri', [GalleryController::class, 'guestView'])->name('guest.informasi_publik.galeri');
-
-    Route::get('/pemerintahan/pemerintah-desa', [PemerintahDesaController::class, 'view'])->name('guest.pemerintahan.pemerintah_desa');
-
-    Route::get('/profil-desa/demografi-desa', [InfoDemografiController::class, 'guestView'])->name('guest.profil_desa.demografi_desa');
-    Route::get('/profil-desa/geografis-desa', [InfoGeografisController::class, 'guestView'])->name('guest.profil_desa.geografis_desa');
-    Route::get('informasi-publik/artikel', [ArtikelController::class, 'index'])->name('guest.informasi_publik.artikel.index');
-    Route::get('informasi-publik/artikel/{id}', [ArtikelController::class, 'show'])->name('guest.informasi_publik.artikel.show');
+    
 
     
 });
